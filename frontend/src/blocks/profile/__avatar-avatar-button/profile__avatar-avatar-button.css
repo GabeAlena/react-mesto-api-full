@@ -1,0 +1,8 @@
+.profile__avatar-avatar-button {
+  position: relative;
+}
+
+.profile__avatar-avatar-button:hover.profile__avatar-button{
+  opacity: 1;
+  visibility: visible;
+}

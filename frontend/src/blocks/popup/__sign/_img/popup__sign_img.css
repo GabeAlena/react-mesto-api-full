@@ -1,0 +1,15 @@
+.popup__sign_img {
+  margin: 0;
+  padding: 0;
+  width: 120px;
+  height: 120px;
+  margin-top: 26px;
+  margin-bottom: 32px;
+}
+
+@media screen and (max-width: 320px){
+  .popup__sign_img {
+    margin-top: 25px;
+    margin-bottom: 40px;
+  }
+}

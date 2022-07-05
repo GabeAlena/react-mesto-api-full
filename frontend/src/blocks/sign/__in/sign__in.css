@@ -1,0 +1,22 @@
+.sign__in {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 358px;
+}
+
+.sign__in p {
+  padding: 0;
+  margin: 15px 5px 0 0;
+  font-family: 'Inter', 'Arial', sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 17px;
+}
+
+@media screen and (max-width: 320px){
+  .sign__in p {
+    margin: 20px 5px 0 0;
+  }
+}
