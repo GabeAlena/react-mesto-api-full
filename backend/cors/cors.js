@@ -1,8 +1,6 @@
 const allowedCors = [
   'http://gabealena.students.nomoredomains.xyz',
   'https://gabealena.students.nomoredomains.xyz',
-  'http://api.gabealena.students.nomoredomains.xyz',
-  'https://api.gabealena.students.nomoredomains.xyz',
   'http://localhost:3000',
   'https://localhost:3000',
 ];
