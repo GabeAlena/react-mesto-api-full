@@ -15,10 +15,10 @@ function Header(props) {
                                 <Link to="/signin" className="header__link" onClick={props.handleSignOut}>Выйти</Link>                                                           
                             </>
                         }/>
-                        <Route path="sign-in" element={
+                        <Route path="signin" element={
                             <Link to="/signup" className="header__link">Регистрация</Link>
                         }/>
-                        <Route path="sign-up" element={
+                        <Route path="signup" element={
                             <Link to="/signin" className="header__link">Войти</Link>
                         }/>
                     </Routes>                          
