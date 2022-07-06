@@ -18,7 +18,8 @@ class Api {
     getUserInfo() {
         return fetch(this._baseUrl + '/users/me', {
             method: 'GET',
-            headers: this._headers
+            headers: this._headers,
+            credentials: 'include'
         })
         .then(this._checkResponse)
     }
@@ -27,7 +28,8 @@ class Api {
     getInitialCards() {
         return fetch(this._baseUrl + '/cards', {
             method: 'GET',
-            headers: this._headers
+            headers: this._headers,
+            credentials: 'include'
         })
         .then(this._checkResponse)
     };
@@ -37,6 +39,7 @@ class Api {
         return fetch(this._baseUrl + '/users/me', {
             method: 'PATCH',
             headers: this._headers,
+            credentials: 'include',
             body: JSON.stringify({
                 name,
                 about
@@ -50,6 +53,7 @@ class Api {
         return fetch(this._baseUrl + '/cards', {
             method: 'POST',
             headers: this._headers,
+            credentials: 'include',
             body: JSON.stringify({
                 name,
                 link
@@ -62,7 +66,8 @@ class Api {
     getLikes() {
         return fetch(this._baseUrl + '/cards', {
             method: 'GET',
-            headers: this._headers
+            headers: this._headers,
+            credentials: 'include'
         })
         .then(this._checkResponse)
     };
@@ -71,7 +76,8 @@ class Api {
     deleteCard(id) {
         return fetch(this._baseUrl + `/cards/${id}`, {
             method: 'DELETE',
-            headers: this._headers
+            headers: this._headers,
+            credentials: 'include'
         })
         .then(this._checkResponse)
     };
@@ -80,7 +86,8 @@ class Api {
     changeLikeCardStatus(id, isLiked) {
         return fetch(this._baseUrl + `/cards/${id}/likes`, {
             method: `${isLiked ? 'PUT' : 'DELETE'}`,
-            headers: this._headers
+            headers: this._headers,
+            credentials: 'include'
         })
         .then(this._checkResponse)
     };
@@ -90,6 +97,7 @@ class Api {
         return fetch(this._baseUrl + '/users/me/avatar', {
             method: 'PATCH',
             headers: this._headers,
+            credentials: 'include',
             body: JSON.stringify({
                 avatar
             })
