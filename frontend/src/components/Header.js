@@ -12,14 +12,14 @@ function Header(props) {
                         <Route exact path="/" element={
                             <>
                                 <p className="header__email">{props.email}</p>
-                                <Link to="/sign-in" className="header__link" onClick={props.handleSignOut}>Выйти</Link>                                                           
+                                <Link to="/signin" className="header__link" onClick={props.handleSignOut}>Выйти</Link>                                                           
                             </>
                         }/>
                         <Route path="sign-in" element={
-                            <Link to="/sign-up" className="header__link">Регистрация</Link>
+                            <Link to="/signup" className="header__link">Регистрация</Link>
                         }/>
                         <Route path="sign-up" element={
-                            <Link to="/sign-in" className="header__link">Войти</Link>
+                            <Link to="/signin" className="header__link">Войти</Link>
                         }/>
                     </Routes>                          
                 </div>

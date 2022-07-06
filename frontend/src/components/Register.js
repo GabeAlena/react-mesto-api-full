@@ -58,7 +58,7 @@ function Register({ onRegister }) {
 
             <div className="sign__in">
                 <p>Уже зарегистрированы?</p>
-                <Link to="/sign-in" className="sign__login-link">Войти</Link>
+                <Link to="/signin" className="sign__login-link">Войти</Link>
             </div>
         </div>
     )

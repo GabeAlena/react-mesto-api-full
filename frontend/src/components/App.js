@@ -40,7 +40,7 @@ function App() {
             setInfoTooltipImage(successImage);
             setInfoTooltipMessage("Вы успешно зарегистрировались!");
             if (response) {
-              navigate('/sign-in');
+              navigate('/signin');
               return response.json;
             }
           })
@@ -91,7 +91,7 @@ function App() {
     const handleSignOut = () => {
       localStorage.removeItem('jwt');
       setIsLoggedIn(false);
-      navigate('/sign-in');
+      navigate('/signin');
     }
 
     useEffect(() => {
@@ -201,11 +201,11 @@ function App() {
           <Header email={userEmail} isLoggedIn={isLoggedIn} handleSignOut={handleSignOut} />
 
           <Routes>
-              <Route path="/sign-up" element={
+              <Route path="/signup" element={
                   <Register onRegister={handleRegister} />
               }/>
 
-              <Route path="/sign-in" element={
+              <Route path="/signin" element={
                   <Login onLogin={handleLogin} />
               }/>
 
