@@ -18,7 +18,7 @@ const app = express();
 mongoose.connect('mongodb://localhost:27017/mestodb', { useNewUrlParser: true });
 
 app.use(express.json());
-app.use(cors({ origin: ['https://localhost:3000', 'http://localhost3000', 'https://gabealena.students.nomoredomains.xyz', 'http://gabealena.students.nomoredomains.xyz', 'https://api.gabealena.students.nomoredomains.xyz', 'http://api.gabealena.students.nomoredomains.xyz'] }));
+app.use(cors({ credentials: true, origin: ['https://localhost:3000', 'http://localhost3000', 'https://gabealena.students.nomoredomains.xyz', 'http://gabealena.students.nomoredomains.xyz', 'https://api.gabealena.students.nomoredomains.xyz', 'http://api.gabealena.students.nomoredomains.xyz'] }));
 app.use(cookieParser());
 
 app.use(requestLogger);
