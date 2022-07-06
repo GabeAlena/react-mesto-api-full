@@ -16,7 +16,7 @@ class Api {
     
     // загрузка информации о пользователе с сервера
     getUserInfo() {
-        return fetch(`${this._baseUrl}/users/me`, {
+        return fetch(this._baseUrl + '/users/me', {
             method: 'GET',
             headers: this._headers
         })
@@ -25,7 +25,7 @@ class Api {
 
     //загрузка карточек с сервера
     getInitialCards() {
-        return fetch(`${this._baseUrl}/cards`, {
+        return fetch(this._baseUrl + '/cards', {
             method: 'GET',
             headers: this._headers
         })
@@ -34,7 +34,7 @@ class Api {
 
     //редактирование профиля
     editProfileData(name, about) {
-        return fetch(`${this._baseUrl}/users/me`, {
+        return fetch(this._baseUrl + '/users/me', {
             method: 'PATCH',
             headers: this._headers,
             body: JSON.stringify({
@@ -47,7 +47,7 @@ class Api {
 
     //добавление новой карточки
     postNewCard(name, link) {
-        return fetch(`${this._baseUrl}/cards`, {
+        return fetch(this._baseUrl + '/cards', {
             method: 'POST',
             headers: this._headers,
             body: JSON.stringify({
@@ -60,7 +60,7 @@ class Api {
 
     //отображение количества лайков карточки
     getLikes() {
-        return fetch(`${this._baseUrl}/cards`, {
+        return fetch(this._baseUrl + '/cards', {
             method: 'GET',
             headers: this._headers
         })
@@ -69,7 +69,7 @@ class Api {
 
     //удаление карточки
     deleteCard(id) {
-        return fetch(`${this._baseUrl}/cards/${id}`, {
+        return fetch(this._baseUrl + `/cards/${id}`, {
             method: 'DELETE',
             headers: this._headers
         })
@@ -78,7 +78,7 @@ class Api {
 
     //постановка и снятие лайка
     changeLikeCardStatus(id, isLiked) {
-        return fetch(`${this._baseUrl}/cards/${id}/likes`, {
+        return fetch(this._baseUrl + `/cards/${id}/likes`, {
             method: `${isLiked ? 'PUT' : 'DELETE'}`,
             headers: this._headers
         })
@@ -87,7 +87,7 @@ class Api {
 
     //обновление аватара пользователя
     patchAvatar(avatar) {
-        return fetch(`${this._baseUrl}/users/me/avatar`, {
+        return fetch(this._baseUrl + '/users/me/avatar', {
             method: 'PATCH',
             headers: this._headers,
             body: JSON.stringify({
