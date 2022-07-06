@@ -10,7 +10,6 @@ const auth = require('./middlewares/auth');
 const NotFound = require('./errors/NotFound');
 const { serverError } = require('./errors/serverError');
 const { requestLogger, errorLogger } = require('./middlewares/logger');
-const cors = require('./cors/cors');
 
 const { PORT = 3000 } = process.env;
 const app = express();
@@ -21,8 +20,6 @@ app.use(express.json());
 app.use(cookieParser());
 
 app.use(requestLogger);
-
-app.use(cors());
 
 app.post('/signup', celebrate({
   body: Joi.object().keys({
