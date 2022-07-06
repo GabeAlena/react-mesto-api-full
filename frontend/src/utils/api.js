@@ -1,3 +1,5 @@
+import { getToken, BASE_URL } from "./utils";
+
 class Api {
     constructor({ baseUrl, headers }) {
         this._baseUrl = baseUrl;
@@ -97,9 +99,9 @@ class Api {
 }
 
 export const api = new Api({
-    baseUrl: 'https://mesto.nomoreparties.co/v1/cohort-38',
+    baseUrl: BASE_URL,
     headers: {
-        authorization: 'd858efb2-1413-409e-a417-bed1a584b8e7',
+        authorization: `Bearer ${getToken()}`,
         'Content-Type': 'application/json'
     }
 });

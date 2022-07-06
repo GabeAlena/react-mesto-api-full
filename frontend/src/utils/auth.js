@@ -1,4 +1,4 @@
-export const BASE_URL = "https://auth.nomoreparties.co";
+import { BASE_URL } from './utils';
 
 const checkResponse = (res) => {
     if (res.ok) {
