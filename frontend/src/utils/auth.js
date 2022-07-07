@@ -35,7 +35,7 @@ export const authorization = (email, password) => {
 };
 
 export const checkToken = (jwt) => {
-    return fetch(`${BASE_URL}/users/me`, {
+    return fetch(BASE_URL + '/users/me', {
         method: 'GET',
         credentials: 'include',
         headers: {
