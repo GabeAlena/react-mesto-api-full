@@ -54,7 +54,7 @@ function App() {
     }
 
     function handleLogin({email, password}) {
-      auth.login(email, password)
+      auth.authorization(email, password)
           .then((response) => {
             console.log(response);
             localStorage.setItem('jwt', response.token);
