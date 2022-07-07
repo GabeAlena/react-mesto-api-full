@@ -1,9 +1,0 @@
-.element__like-numberLike {
-  max-height: 35px;
-  margin: 0;
-  padding: 0;
-  padding-bottom: 3px;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-}
