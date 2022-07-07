@@ -1,0 +1,16 @@
+.sign {
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  color: #FFFFFF;
+}
+
+@media screen and (max-width: 320px){
+  .sign {
+    padding-left: 19px;
+    padding-right: 19px;
+    max-width: 280px;
+  }
+}

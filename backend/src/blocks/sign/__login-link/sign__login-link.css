@@ -1,0 +1,22 @@
+.sign__login-link {
+  padding: 0;
+  margin: 15px 0 0;
+  color: white;
+  font-family: 'Inter', 'Arial', sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 17px;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.sign__login-link:hover {
+  opacity: 0.6;
+}
+
+@media screen and (max-width: 320px){
+  .sign__login-link {
+    margin: 20px 0 0;
+  }
+}
