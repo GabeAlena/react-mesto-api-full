@@ -35,7 +35,7 @@ function App() {
     function handleRegister({email, password}) {
       auth.register(email, password)
           .then((response) => {
-            setUserEmail(response.data.email);
+            /* setUserEmail(response.data.email); */
             console.log(email);
             setInfoTooltipImage(successImage);
             setInfoTooltipMessage("Вы успешно зарегистрировались!");
