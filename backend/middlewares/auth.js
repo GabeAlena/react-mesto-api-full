@@ -5,14 +5,15 @@ const Unauthorized = require('../errors/Unauthorized');
 module.exports = (req, res, next) => {
   const authorization = req.cookies.jwt;
 
-  if (!authorization) {
+  if (!authorization || !authorization.startsWith('Bearer ')) {
     throw new Unauthorized('Необходима авторизация!');
   }
 
+  const token = authorization.replace('Bearer ', '');
   let payload;
 
   try {
-    payload = jwt.verify(authorization, NODE_ENV === 'production' ? JWT_SECRET : 'key');
+    payload = jwt.verify(token, NODE_ENV === 'production' ? JWT_SECRET : 'key');
   } catch (err) {
     return next(new Unauthorized('Необходима авторизация'));
   }
