@@ -31,7 +31,6 @@ function App() {
     const [infoTooltip, setInfoTooltip] = useState(false);
     const [infoTooltipImage, setInfoTooltipImage] = useState('');
     const [infoTooltilMessage, setInfoTooltipMessage] = useState('');
-    const [token, setToken] = useState('');
 
     function handleRegister({email, password}) {
       auth.register(email, password)
@@ -73,7 +72,6 @@ function App() {
     const checkToken = () => {
       const jwt = localStorage.getItem('jwt');
       if (jwt) {
-        setToken(jwt);
         auth.checkToken(jwt)
             .then((response) => {
                 setUserEmail(response.email);
@@ -98,7 +96,7 @@ function App() {
 
     useEffect(() => {
       if (isLoggedIn)
-        Promise.all([api.getUserInfo(token), api.getInitialCards(token)])
+        Promise.all([api.getUserInfo(), api.getInitialCards()])
           .then(([userInfo, cardsList]) => {
             setCurrentUser(userInfo);
             setCards(cardsList);
@@ -120,7 +118,7 @@ function App() {
     function handleCardLike(card) {
         const isLiked = card.likes.some(i => i._id === currentUser._id);
         
-        api.changeLikeCardStatus(card._id, !isLiked, token)
+        api.changeLikeCardStatus(card._id, !isLiked)
           .then((newCard) => {
             setCards((state) => state.map((c) => c._id === card._id ? newCard : c));
           })
@@ -130,7 +128,7 @@ function App() {
     }
 
     function handleCardDelete(card) {
-        api.deleteCard(card._id, token)
+        api.deleteCard(card._id)
           .then(() => {
               setCards((state) => cards.filter((c) => c._id !== card._id));
           })
@@ -160,7 +158,7 @@ function App() {
     }
 
     function handleUpdateUser({ name, about }) {
-        api.editProfileData({ name, about }, token)
+        api.editProfileData(name, about)
           .then((newProfileData) => {
             setCurrentUser(newProfileData);
           })
@@ -173,7 +171,7 @@ function App() {
     }
 
     function handleUpdateAvatar({ avatar }) {
-        api.patchAvatar({ avatar }, token)
+        api.patchAvatar(avatar)
           .then((newAvatar) => {
             setCurrentUser(newAvatar);
           })
@@ -186,7 +184,7 @@ function App() {
     }
 
     function handleAddPlaceSubmit({ name, link }) {
-        api.postNewCard({ name, link }, token)
+        api.postNewCard(name, link)
           .then((newCard) => {
             setCards([newCard, ...cards]);
           })
