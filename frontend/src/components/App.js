@@ -56,13 +56,10 @@ function App() {
       auth.authorization(email, password)
           .then((response) => {
             console.log(response);
-            if (response.token) {
-              localStorage.setItem('jwt', response.token);
-              setIsLoggedIn(true);
-              setUserEmail(email);
-              navigate('/');       
-              return response;
-            }     
+            localStorage.setItem('jwt', response.token);
+            setIsLoggedIn(true);
+            setUserEmail(email);
+            navigate('/');             
           })
           .catch((err) => {
             setInfoTooltipImage(failImage);
