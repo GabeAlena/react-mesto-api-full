@@ -59,12 +59,13 @@ module.exports.login = (req, res, next) => {
         NODE_ENV === 'production' ? JWT_SECRET : 'dev-secret',
       );
 
-      return res.cookie('jwt', token, {
+      /* return res.cookie('jwt', token, {
         maxAge: 3600000 * 24 * 7,
         httpOnly: true,
         sameSite: true,
         secure: true,
-      }).send({ token });
+      }).send({ token }); */
+      res.send({ token });
     })
     .catch((err) => {
       if (err.name === 'Error') {
