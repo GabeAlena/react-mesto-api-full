@@ -34,14 +34,14 @@ export const authorization = (email, password) => {
     .then(checkResponse);
 };
 
-export const checkToken = (jwt) => {
+export const checkToken = (token) => {
     return fetch(BASE_URL + '/users/me', {
         method: 'GET',
         credentials: 'include',
         headers: {
             'Accept': 'application/json',
             "Content-Type": "application/json",
-            'Authorization': `Bearer ${jwt}` 
+            'Authorization': `Bearer ${token}` 
         }
     })
     .then(res => res.json())
