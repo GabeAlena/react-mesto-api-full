@@ -1,0 +1,22 @@
+{
+  "name": "react-mesto-api-full",
+  "version": "1.0.0",
+  "description": "project 15",
+  "main": "frontend/src/index.js",
+  "scripts": {
+    "start": "node backend/app.js",
+    "dev": "nodemon backend/app.js",
+    "lint": "npx eslint .",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/GabeAlena/react-mesto-api-full.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/GabeAlena/react-mesto-api-full/issues"
+  },
+  "homepage": "https://github.com/GabeAlena/react-mesto-api-full#readme"
+}
