@@ -58,7 +58,7 @@ function App() {
             console.log(response);
             localStorage.setItem('jwt', response.token);
             setIsLoggedIn(true);
-            setUserEmail(response.email);
+            setUserEmail(response.data.email);
             navigate('/');             
           })
           .catch((err) => {
