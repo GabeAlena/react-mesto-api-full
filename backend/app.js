@@ -25,6 +25,8 @@ app.use(cors({
   origin: [
     'https://localhost:3000',
     'http://localhost3000',
+    'https://localhost:3001',
+    'http://localhost3001',
     'https://gabealena.students.nomoredomains.xyz',
     'http://gabealena.students.nomoredomains.xyz',
     'https://api.gabealena.students.nomoredomains.xyz',
