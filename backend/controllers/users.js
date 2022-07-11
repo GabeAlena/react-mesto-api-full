@@ -1,7 +1,7 @@
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 
-const { /* NODE_ENV, */ JWT_SECRET } = process.env;
+const { /* NODE_ENV, */JWT_SECRET } = process.env;
 
 const User = require('../models/user');
 const ValidationError = require('../errors/ValidationError');
@@ -60,15 +60,12 @@ module.exports.login = (req, res, next) => {
         { expiresIn: '7d' },
       );
 
-      /* return res.cookie('jwt', token, {
+      return res.cookie('jwt', token, {
         maxAge: 3600000 * 24 * 7,
         httpOnly: true,
         sameSite: 'None',
         secure: true,
-      }).send({ token }); */
-      res.send({
-        token,
-      });
+      }).send({ token });
     })
     .catch((err) => {
       if (err.name === 'Error') {
