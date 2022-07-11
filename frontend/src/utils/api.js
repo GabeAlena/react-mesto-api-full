@@ -19,7 +19,7 @@ class Api {
         return fetch(`${this._baseUrl}/users/me`, {
             method: 'GET',
             headers: this._headers,
-            credentials: 'include'
+            /* credentials: 'include' */
         })
         .then(this._checkResponse)
     }
@@ -29,7 +29,7 @@ class Api {
         return fetch(`${this._baseUrl}/cards`, {
             method: 'GET',
             headers: this._headers,
-            credentials: 'include'
+            /* credentials: 'include' */
         })
         .then(this._checkResponse)
     };
@@ -109,7 +109,7 @@ class Api {
 export const api = new Api({
     baseUrl: BASE_URL,
     headers: {
-        Authorization: `Bearer ${getToken()}`,
+        'Authorization': `Bearer ${getToken()}`,
         'Content-Type': 'application/json'
     }
 });
