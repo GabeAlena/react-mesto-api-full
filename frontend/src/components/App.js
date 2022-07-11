@@ -59,8 +59,6 @@ function App() {
             localStorage.setItem('jwt', response.token);
             setIsLoggedIn(true);
             setUserEmail(response.email);
-            setInfoTooltipImage(successImage);
-            setInfoTooltipMessage("Вы успешно авторизовались!");
             navigate('/');             
           })
           .catch((err) => {
