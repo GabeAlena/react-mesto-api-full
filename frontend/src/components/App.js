@@ -74,7 +74,7 @@ function App() {
       if (jwt) {
         auth.checkToken(jwt)
             .then((response) => {
-                setUserEmail(response.email);
+                setUserEmail(response.data.email);
                 setIsLoggedIn(true);
                 navigate('/');        
             })
