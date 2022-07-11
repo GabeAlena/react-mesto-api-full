@@ -67,11 +67,6 @@ module.exports.login = (req, res, next) => {
         secure: true,
       }).send({ token }); */
       res.send({
-        name: user.name,
-        about: user.about,
-        avatar: user.avatar,
-        _id: user.id,
-        email: user.email,
         token,
       });
     })
