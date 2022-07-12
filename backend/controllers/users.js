@@ -87,7 +87,12 @@ module.exports.returnUser = (req, res, next) => {
       if (!user) {
         throw new NotFound('Пользователь не найден!');
       }
-      return res.send({ user });
+      /* return res.send({ data: user }); */
+      return res.send({
+        name: user.name,
+        email: user.email,
+        avatar: user.avatar,
+      });
     })
     .catch((err) => {
       next(err);
