@@ -2,8 +2,9 @@ require('dotenv').config();
 const express = require('express');
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
+const cookieParser = require('cookie-parser');
 const { errors, celebrate, Joi } = require('celebrate');
-const cors = require('cors');
+/* const cors = require('cors'); */
 
 const userRouter = require('./routes/users');
 const cardRouter = require('./routes/cards');
@@ -20,8 +21,9 @@ mongoose.connect('mongodb://localhost:27017/mestodb', { useNewUrlParser: true })
 
 app.use(express.json());
 app.use(bodyParser.json());
+app.use(cookieParser());
 app.use(bodyParser.urlencoded({ extended: true }));
-app.use(cors({
+/* app.use(cors({
   credentials: true,
   origin: [
     'https://localhost:3000',
@@ -32,7 +34,7 @@ app.use(cors({
     'http://gabealena.students.nomoredomains.xyz',
     'https://api.gabealena.students.nomoredomains.xyz',
     'http://api.gabealena.students.nomoredomains.xyz'],
-}));
+})); */
 
 app.use(requestLogger);
 

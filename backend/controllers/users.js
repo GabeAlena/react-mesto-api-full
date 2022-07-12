@@ -53,26 +53,47 @@ module.exports.login = (req, res, next) => {
 
   User.findUserByCredentials(email, password)
     .then((user) => {
-      /* const token = jwt.sign({ _id: user._id }, 'some-secret-key', { expiresIn: '7d' }); */
       const token = jwt.sign(
         { _id: user._id },
-        'secret-key',
+        'some-secret-key',
         { expiresIn: '7d' },
       );
 
-      /* return res.cookie('jwt', token, {
+      return res.cookie('jwt', token, {
+        maxAge: 3600000 * 24 * 7,
+        httpOnly: true,
+        /* sameSite: true, */
+        /* sameSite: 'None',
+        secure: true, */
+      }).send({
+        token,
+        name: user.name,
+        email: user.email,
+        avatar: user.avatar,
+        _id: user.id,
+      });
+    })
+
+  /* const token = jwt.sign({ _id: user._id }, 'some-secret-key', { expiresIn: '7d' }); */
+  /* const token = jwt.sign(
+        { _id: user._id },
+        'secret-key',
+        { expiresIn: '7d' },
+      ); */
+
+  /* return res.cookie('jwt', token, {
         maxAge: 3600000 * 24 * 7,
         httpOnly: true,
         sameSite: true,
         secure: true,
       }).send({ token }); */
-      res.send({
+  /* res.send({
         token,
         name: user.name,
         email: user.email,
         avatar: user.avatar,
-      });
-    })
+        _id: user.id,
+      }); */
     .catch((err) => {
       if (err.name === 'Error') {
         next(new Unauthorized('Неверные почта или пароль'));
