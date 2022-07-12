@@ -94,38 +94,17 @@ function App() {
       navigate('/signin');
     }
 
-    /* useEffect(() => {
+    useEffect(() => {
       if (isLoggedIn)
         Promise.all([api.getUserInfo(), api.getInitialCards()])
           .then(([userInfo, cardsList]) => {
             setCurrentUser(userInfo);
-            setCards(cardsList);
+            setCards([...cardsList]);
           })
           .catch((err) => {
               console.log(err);
           });
-    }, [isLoggedIn]) */
-
-    useEffect(() => {
-      if (isLoggedIn) {
-        api
-          .getUserInfo()
-          .then((userInfo) => {
-            setCurrentUser(userInfo);
-          })
-          .catch((err) => {
-            console.log(err);
-          });
-        api
-          .getInitialCards()
-          .then((cardsList) => {
-            setCards(cardsList);
-          })
-          .catch((err) => {
-            console.log(err);
-          });
-      }
-    }, [isLoggedIn]);
+    }, [isLoggedIn])
     
     useEffect(() => {
         checkToken();
