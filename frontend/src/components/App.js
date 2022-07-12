@@ -97,9 +97,9 @@ function App() {
     useEffect(() => {
       if (isLoggedIn)
         Promise.all([api.getUserInfo(), api.getInitialCards()])
-          .then(([userInfo, cardsList]) => {
+          .then(([userInfo, cards]) => {
             setCurrentUser(userInfo);
-            setCards(cardsList);
+            setCards(cards);
           })
           .catch((err) => {
               console.log(err);
