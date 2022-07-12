@@ -98,7 +98,7 @@ function App() {
       if (isLoggedIn)
         Promise.all([api.getUserInfo(), api.getInitialCards()])
           .then(([userInfo, cardsList]) => {
-            setCurrentUser(userInfo.data);
+            setCurrentUser({userInfo});
             setCards(cardsList.data);
           })
           .catch((err) => {

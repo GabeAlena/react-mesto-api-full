@@ -66,7 +66,12 @@ module.exports.login = (req, res, next) => {
         sameSite: true,
         secure: true,
       }).send({ token }); */
-      res.send({ token });
+      res.send({
+        token,
+        name: user.name,
+        email: user.email,
+        avatar: user.avatar,
+      });
     })
     .catch((err) => {
       if (err.name === 'Error') {
