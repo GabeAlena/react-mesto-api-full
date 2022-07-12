@@ -99,7 +99,12 @@ function App() {
         Promise.all([api.getUserInfo(), api.getInitialCards()])
           .then(([userInfo, cardsList]) => {
             setCurrentUser(userInfo);
-            setCards(cardsList);
+            const newCardsList = cardsList.map((cardData) => {
+              return {
+                ...cardData
+              };
+            });
+            setCards(newCardsList);
           })
           .catch((err) => {
               console.log(err);
