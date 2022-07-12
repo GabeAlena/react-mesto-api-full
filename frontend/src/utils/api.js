@@ -109,7 +109,7 @@ class Api {
 export const api = new Api({
     baseUrl: BASE_URL,
     headers: {
-        Authorization: `Bearer ${getToken()}`,
+        'Authorization': `${getToken()}`,
         'Content-Type': 'application/json'
     }
 });
