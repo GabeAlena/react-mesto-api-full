@@ -68,6 +68,7 @@ module.exports.login = (req, res, next) => {
       }).send({
         token,
         name: user.name,
+        about: user.about,
         email: user.email,
         avatar: user.avatar,
         _id: user.id,

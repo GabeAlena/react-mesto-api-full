@@ -99,16 +99,7 @@ function App() {
         Promise.all([api.getUserInfo(), api.getInitialCards()])
           .then(([userInfo, data]) => {
             setCurrentUser(userInfo);
-            const cards = data.map((item) => {
-              return {
-                _id: item._id,
-                name: item.name,
-                link: item.link,
-                likes: item.likes,
-                owner: item.owner,
-              };
-            });
-            setCards(cards);
+            setCards(data.cards);
           })
           .catch((err) => {
               console.log(err);
