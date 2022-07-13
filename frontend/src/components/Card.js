@@ -9,10 +9,10 @@ function Card(props) {
     const cardDeleteButtonClassName = (
       `element__trash ${isOwn ? 'element__trash_visible' : 'element__trash_hidden'}`
     );
-    const isLiked = props.card.likes.some(i => i._id === currentUser._id);
+    /* const isLiked = props.card.likes.some(i => i._id === currentUser._id);
     const cardLikeButtonClassName = (
       `element__like ${isLiked ? 'element__like_active' : ''}`
-    );
+    ); */
 
     function handleClick() {
         props.onCardClick(props.card);
@@ -48,7 +48,7 @@ function Card(props) {
                     <h2 className="element__title">{props.card.name}</h2>
                     <div className="element__like-numberLike">
                         <button 
-                            className={cardLikeButtonClassName} 
+                            /* className={cardLikeButtonClassName} */
                             type="button" 
                             aria-label="кнопка мне нравится" 
                             onClick={handleLikeClick}
