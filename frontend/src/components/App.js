@@ -97,12 +97,12 @@ function App() {
     useEffect(() => {
       if (isLoggedIn)
         Promise.all([api.getUserInfo(), api.getInitialCards()])
-          .then(([userInfo, cards]) => {
+          .then(([userInfo, data]) => {
             setCurrentUser(userInfo);
             setCards({
-              _id: cards._id,
-              title: cards.title,
-              owner: cards.owner,
+              _id: data._id,
+              title: data.title,
+              owner: data.owner,
             });
           })
           .catch((err) => {
