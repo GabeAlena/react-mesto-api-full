@@ -97,8 +97,17 @@ function App() {
     useEffect(() => {
       if (isLoggedIn)
         Promise.all([api.getUserInfo(), api.getInitialCards()])
-          .then(([userInfo, cards]) => {
+          .then(([userInfo, data]) => {
             setCurrentUser(userInfo);
+            const cards = data.map((item) => {
+              return {
+                _id: item._id,
+                name: item.name,
+                link: item.link,
+                likes: item.likes,
+                owner: item.owner,
+              };
+            });
             setCards(cards);
           })
           .catch((err) => {
