@@ -33,8 +33,8 @@ app.use(cors({
     'http://localhost3001',
     'https://gabealena.students.nomoredomains.xyz',
     'http://gabealena.students.nomoredomains.xyz',
-    /* 'https://api.gabealena.students.nomoredomains.xyz',
-  'http://api.gabealena.students.nomoredomains.xyz' */],
+    'https://api.gabealena.students.nomoredomains.xyz',
+    'http://api.gabealena.students.nomoredomains.xyz'],
 }));
 
 app.use(requestLogger);
