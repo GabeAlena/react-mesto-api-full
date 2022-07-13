@@ -112,6 +112,7 @@ module.exports.returnUser = (req, res, next) => {
       /* return res.send({ data: user }); */
       return res.send({
         name: user.name,
+        about: user.about,
         email: user.email,
         avatar: user.avatar,
       });
