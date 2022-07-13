@@ -102,6 +102,7 @@ function App() {
             setCards({
               _id: data._id,
               title: data.title,
+              src: data.src,
               owner: data.owner,
             });
           })
