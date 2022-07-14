@@ -4,8 +4,8 @@ import { CurrentUserContext } from '../contexts/CurrentUserContext.js';
 function Card(props) {
     const currentUser = useContext(CurrentUserContext);
 
-    /* const isOwn = props.card.owner._id === currentUser._id; */
-    const isOwn = props.card.owner === currentUser._id;
+    const isOwn = props.card.owner._id === currentUser._id;
+    /* const isOwn = props.card.owner === currentUser._id; */
     
     const cardDeleteButtonClassName = (
       `element__trash ${isOwn ? 'element__trash_visible' : 'element__trash_hidden'}`
