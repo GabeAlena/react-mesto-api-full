@@ -108,13 +108,14 @@ module.exports.returnUser = (req, res, next) => {
       if (!user) {
         throw new NotFound('Пользователь не найден!');
       }
+      return res.send({ data: user });
       /* return res.send({ data: user }); */
-      return res.send({
+      /* return res.send({
         name: user.name,
         about: user.about,
         email: user.email,
         avatar: user.avatar,
-      });
+      }); */
     })
     .catch((err) => {
       next(err);
@@ -125,8 +126,9 @@ module.exports.returnUser = (req, res, next) => {
 module.exports.getUsers = (req, res, next) => {
   User.find({})
     .then((users) => {
-      res.send({ data: users });
+      res.send(users);
     })
+    /* { data: users } */
     .catch((err) => next(err));
 };
 
