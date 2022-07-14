@@ -7,12 +7,7 @@ const Forbidden = require('../errors/Forbidden');
 /* возвращает все карточки */
 module.exports.getCards = (req, res, next) => {
   Card.find({})
-    .then((data) => res.send({
-      src: data.src,
-      name: data.name,
-      _id: data._id,
-      owner: data.owner,
-    }))
+    .then((cards) => res.send({ data: cards }))
     .catch((err) => next(err));
 };
 
