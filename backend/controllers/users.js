@@ -140,7 +140,8 @@ module.exports.getUser = (req, res, next) => {
       if (!user) {
         throw new NotFound('Запрашиваемый пользователь не найден');
       }
-      return res.send({ data: user });
+      res.send(user);
+      /* return res.send({ data: user }); */
     })
     .catch((err) => {
       if (err.name === 'ValidationError') {
@@ -161,7 +162,8 @@ module.exports.updateUser = (req, res, next) => {
       if (!user) {
         throw new NotFound('Запрашиваемый пользователь не найден');
       }
-      return res.send({ data: user });
+      return res.send({ name, about });
+      /* return res.send({ data: user }); */
     })
     .catch((err) => {
       if (err.name === 'ValidationError') {
@@ -182,7 +184,8 @@ module.exports.updateAvatarUser = (req, res, next) => {
       if (!user) {
         throw new NotFound('Запрашиваемый пользователь не найден');
       }
-      return res.send({ data: user });
+      return res.send({ avatar });
+      /* return res.send({ data: user }); */
     })
     .catch((err) => {
       if (err.name === 'ValidationError') {
