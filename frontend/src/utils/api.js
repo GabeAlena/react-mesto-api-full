@@ -3,14 +3,8 @@ import { getToken, BASE_URL } from "./utils";
 class Api {
     constructor({ baseUrl, headers }) {
         this._baseUrl = baseUrl;
-        /* this._headers = headers; */
+        this._headers = headers;
     }
-      _headers() {
-        return {
-            'Authorization': `Bearer ${localStorage.getItem('token')}`,
-            'Content-Type': 'application/json',
-        }
-     }
 
     _checkResponse(res) {
         if (res.ok) {
@@ -41,14 +35,14 @@ class Api {
     };
 
     //редактирование профиля
-    editProfileData(data) {
+    editProfileData(name, about) {
         return fetch(`${this._baseUrl}/users/me`, {
             method: 'PATCH',
             headers: this._headers,
             credentials: 'include',
             body: JSON.stringify({
-                name: data.name,
-                about: data.about
+                name,
+                about
             })
         })
         .then(this._checkResponse)
@@ -114,4 +108,8 @@ class Api {
 
 export const api = new Api({
     baseUrl: BASE_URL,
+    headers: {
+        'Authorization': `${getToken()}`,
+        'Content-Type': 'application/json'
+    },
 });
