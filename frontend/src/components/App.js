@@ -58,11 +58,11 @@ function App() {
             console.log(data);
             if (data.jwt){
               localStorage.setItem('jwt', data.jwt);
+              setIsLoggedIn(true);
+              setUserEmail(email);
+              navigate('/');  
               return data;
-            }
-            setIsLoggedIn(true);
-            setUserEmail(email);
-            navigate('/');             
+            }           
           })
           .catch((err) => {
             setInfoTooltipImage(failImage);
