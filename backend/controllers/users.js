@@ -59,12 +59,7 @@ module.exports.login = (req, res, next) => {
         { expiresIn: '7d' },
       );
 
-      return res.cookie('jwt', token, {
-        maxAge: 3600000 * 24 * 7,
-        httpOnly: true,
-        /* sameSite: true, */
-        /* secure: true, */
-      }).send({
+      res.send({
         token,
         name: user.name,
         about: user.about,
@@ -85,6 +80,7 @@ module.exports.login = (req, res, next) => {
   /* res.send({
         token,
         name: user.name,
+        about: user.about,
         email: user.email,
         avatar: user.avatar,
         _id: user.id,
