@@ -21,7 +21,7 @@ module.exports.getCards = (req, res, next) => {
 /* создает карточку */
 module.exports.createCard = (req, res, next) => {
   const { name, link } = req.body;
-  const owner = req.user._id;
+  const owner = req.user.id;
 
   Card.create({ name, link, owner })
     .then((card) => res.send(card))
@@ -63,7 +63,7 @@ module.exports.likeCard = (req, res, next) => {
       if (!card) {
         throw new NotFound('Запрашиваемая карточка не найдена');
       }
-      return res.send({ data: card });
+      res.send(card);
     })
     .catch((err) => {
       if (err.name === 'ValidationError') {
@@ -81,7 +81,7 @@ module.exports.dislikeCard = (req, res, next) => {
       if (!card) {
         throw new NotFound('Запрашиваемая карточка не найдена');
       }
-      return res.send({ data: card });
+      return res.send(card);
     })
     .catch((err) => {
       if (err.name === 'ValidationError') {

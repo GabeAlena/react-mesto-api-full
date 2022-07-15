@@ -35,7 +35,7 @@ module.exports.createUser = (req, res, next) => {
         about: user.about,
         avatar: user.avatar,
         email: user.email,
-        _id: user._id,
+        _id: user.id,
       });
     })
     .catch((err) => {
@@ -65,7 +65,7 @@ module.exports.login = (req, res, next) => {
         about: user.about,
         email: user.email,
         avatar: user.avatar,
-        _id: user._id,
+        _id: user.id,
       });
     })
 
@@ -118,9 +118,9 @@ module.exports.returnUser = (req, res, next) => {
 module.exports.getUsers = (req, res, next) => {
   User.find({})
     .then((users) => {
-      res.send(users);
+      res.send({ data: users });
     })
-    /* { data: users } */
+    /* users */
     .catch((err) => next(err));
 };
 
@@ -132,7 +132,12 @@ module.exports.getUser = (req, res, next) => {
       if (!user) {
         throw new NotFound('Запрашиваемый пользователь не найден');
       }
-      res.send(user);
+      res.send({
+        name: user.name,
+        about: user.about,
+        avatar: user.avatar,
+        _id: user.id,
+      });
       /* return res.send({ data: user }); */
     })
     .catch((err) => {
