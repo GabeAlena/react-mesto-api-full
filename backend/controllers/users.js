@@ -162,6 +162,9 @@ module.exports.updateUser = (req, res, next) => {
       return res.send({
         name: user.name,
         about: user.about,
+        avatar: user.avatar,
+        _id: user._id,
+        email: user.email,
       });
     })
     .catch((err) => {
@@ -185,7 +188,11 @@ module.exports.updateAvatarUser = (req, res, next) => {
       }
       /* return res.send({ data: user }); */
       return res.send({
+        name: user.name,
+        about: user.about,
         avatar: user.avatar,
+        _id: user._id,
+        email: user.email,
       });
     })
     .catch((err) => {
