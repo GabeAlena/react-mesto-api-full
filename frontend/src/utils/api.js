@@ -41,14 +41,14 @@ class Api {
     };
 
     //редактирование профиля
-    editProfileData(name, about) {
+    editProfileData(data) {
         return fetch(`${this._baseUrl}/users/me`, {
             method: 'PATCH',
             headers: this._headers,
             credentials: 'include',
             body: JSON.stringify({
-                name,
-                about
+                name: data.name,
+                about: data.about
             })
         })
         .then(this._checkResponse)
