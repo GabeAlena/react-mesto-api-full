@@ -60,9 +60,9 @@ function App() {
               localStorage.setItem('jwt', data.jwt);
               setIsLoggedIn(true);
               setUserEmail(email);
-              navigate('/');  
               return data;
-            }           
+            }
+            navigate('/');
           })
           .catch((err) => {
             setInfoTooltipImage(failImage);
