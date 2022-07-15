@@ -54,15 +54,12 @@ function App() {
 
     function handleLogin({email, password}) {
       auth.authorization(email, password)
-          .then((data) => {
-            console.log(data);
-            if (data.jwt){
-              localStorage.setItem('jwt', data.jwt);
-              setIsLoggedIn(true);
-              setUserEmail(email);
-              return data;
-            }
-            navigate('/');
+          .then((response) => {
+            console.log(response);
+            localStorage.setItem('jwt', response.token);
+            setIsLoggedIn(true);
+            setUserEmail(email);
+            navigate('/');             
           })
           .catch((err) => {
             setInfoTooltipImage(failImage);
