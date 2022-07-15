@@ -55,8 +55,7 @@ module.exports.login = (req, res, next) => {
     .then((user) => {
       const token = jwt.sign(
         { _id: user._id },
-        /* NODE_ENV === 'production' ? JWT_SECRET : 'dev-secret', */
-        'super-strong-key',
+        'some-secret-key',
         { expiresIn: '7d' },
       );
 
@@ -163,8 +162,7 @@ module.exports.updateUser = (req, res, next) => {
       if (!user) {
         throw new NotFound('Запрашиваемый пользователь не найден');
       }
-      return res.send({ name, about });
-      /* return res.send({ data: user }); */
+      return res.send({ data: user });
     })
     .catch((err) => {
       if (err.name === 'ValidationError') {
@@ -185,8 +183,7 @@ module.exports.updateAvatarUser = (req, res, next) => {
       if (!user) {
         throw new NotFound('Запрашиваемый пользователь не найден');
       }
-      return res.send({ avatar });
-      /* return res.send({ data: user }); */
+      return res.send({ data: user });
     })
     .catch((err) => {
       if (err.name === 'ValidationError') {
