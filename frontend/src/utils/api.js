@@ -109,7 +109,7 @@ class Api {
 export const api = new Api({
     baseUrl: BASE_URL,
     headers: {
-        'Authorization': `${getToken()}`,
+        'Authorization': `${localStorage.getItem('jwt')}`,
         'Content-Type': 'application/json'
     },
 });
