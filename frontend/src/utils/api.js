@@ -19,7 +19,7 @@ class Api {
         return fetch(`${this._baseUrl}/users/me`, {
             method: 'GET',
             headers: {
-                'Authorization': `${localStorage.getItem('jwt')}`,
+                'Authorization': `Bearer ${localStorage.getItem('jwt')}`,
                 'Content-Type': 'application/json'
             },
             credentials: 'include'
@@ -32,7 +32,7 @@ class Api {
         return fetch(`${this._baseUrl}/cards`, {
             method: 'GET',
             headers: {
-                'Authorization': `${localStorage.getItem('jwt')}`,
+                'Authorization': `Bearer ${localStorage.getItem('jwt')}`,
                 'Content-Type': 'application/json'
             },
             credentials: 'include'
@@ -45,7 +45,7 @@ class Api {
         return fetch(`${this._baseUrl}/users/me`, {
             method: 'PATCH',
             headers: {
-                'Authorization': `${localStorage.getItem('jwt')}`,
+                'Authorization': `Bearer ${localStorage.getItem('jwt')}`,
                 'Content-Type': 'application/json'
             },
             credentials: 'include',
@@ -62,7 +62,7 @@ class Api {
         return fetch(`${this._baseUrl}/cards`, {
             method: 'POST',
             headers: {
-                'Authorization': `${localStorage.getItem('jwt')}`,
+                'Authorization': `Bearer ${localStorage.getItem('jwt')}`,
                 'Content-Type': 'application/json'
             },
             credentials: 'include',
@@ -79,7 +79,7 @@ class Api {
         return fetch(`${this._baseUrl}/cards`, {
             method: 'GET',
             headers: {
-                'Authorization': `${localStorage.getItem('jwt')}`,
+                'Authorization': `Bearer ${localStorage.getItem('jwt')}`,
                 'Content-Type': 'application/json'
             },
             credentials: 'include'
@@ -92,7 +92,7 @@ class Api {
         return fetch(`${this._baseUrl}/cards/${id}`, {
             method: 'DELETE',
             headers: {
-                'Authorization': `${localStorage.getItem('jwt')}`,
+                'Authorization': `Bearer ${localStorage.getItem('jwt')}`,
                 'Content-Type': 'application/json'
             },
             credentials: 'include'
@@ -105,7 +105,7 @@ class Api {
         return fetch(`${this._baseUrl}/cards/${id}/likes`, {
             method: `${isLiked ? 'PUT' : 'DELETE'}`,
             headers: {
-                'Authorization': `${localStorage.getItem('jwt')}`,
+                'Authorization': `Bearer ${localStorage.getItem('jwt')}`,
                 'Content-Type': 'application/json'
             },
             credentials: 'include'
@@ -118,7 +118,7 @@ class Api {
         return fetch(`${this._baseUrl}/users/me/avatar`, {
             method: 'PATCH',
             headers: {
-                'Authorization': `${localStorage.getItem('jwt')}`,
+                'Authorization': `Bearer ${localStorage.getItem('jwt')}`,
                 'Content-Type': 'application/json'
             },
             credentials: 'include',
