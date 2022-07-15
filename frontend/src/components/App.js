@@ -56,7 +56,8 @@ function App() {
       auth.authorization(email, password)
           .then((response) => {
             console.log(response);
-            localStorage.setItem('jwt', response.token);
+            localStorage.setItem('token', response.token);
+            checkToken();
             setIsLoggedIn(true);
             setUserEmail(email);
             navigate('/');             
@@ -70,7 +71,7 @@ function App() {
     }
 
     const checkToken = () => {
-      const jwt = localStorage.getItem('jwt');
+      const jwt = localStorage.getItem('token');
       if (jwt) {
         auth.checkToken(jwt)
             .then((response) => {
@@ -89,7 +90,7 @@ function App() {
     }
 
     const handleSignOut = () => {
-      localStorage.removeItem('jwt');
+      localStorage.removeItem('token');
       setIsLoggedIn(false);
       navigate('/signin');
     }
@@ -206,7 +207,7 @@ function App() {
               }/>
 
               <Route path="/signin" element={
-                  <Login onLogin={handleLogin} />
+                  <Login onLogin={handleLogin} checkToken={checkToken} />
               }/>
 
               <Route path="/" exact element={
