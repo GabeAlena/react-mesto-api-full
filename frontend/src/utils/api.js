@@ -15,7 +15,7 @@ class Api {
     }
     
     // загрузка информации о пользователе с сервера
-    getUserInfo(jwt) {
+    getUserInfo() {
         return fetch(`${this._baseUrl}/users/me`, {
             method: 'GET',
             headers: {
@@ -28,7 +28,7 @@ class Api {
     }
 
     //загрузка карточек с сервера
-    getInitialCards(jwt) {
+    getInitialCards() {
         return fetch(`${this._baseUrl}/cards`, {
             method: 'GET',
             headers: {
@@ -41,7 +41,7 @@ class Api {
     };
 
     //редактирование профиля
-    editProfileData(name, about, jwt) {
+    editProfileData(name, about) {
         return fetch(`${this._baseUrl}/users/me`, {
             method: 'PATCH',
             headers: {
@@ -58,7 +58,7 @@ class Api {
     };
 
     //добавление новой карточки
-    postNewCard(name, link, jwt) {
+    postNewCard(name, link) {
         return fetch(`${this._baseUrl}/cards`, {
             method: 'POST',
             headers: {
@@ -75,7 +75,7 @@ class Api {
     };
 
     //отображение количества лайков карточки
-    getLikes(jwt) {
+    getLikes() {
         return fetch(`${this._baseUrl}/cards`, {
             method: 'GET',
             headers: {
@@ -88,7 +88,7 @@ class Api {
     };
 
     //удаление карточки
-    deleteCard(id, jwt) {
+    deleteCard(id) {
         return fetch(`${this._baseUrl}/cards/${id}`, {
             method: 'DELETE',
             headers: {
@@ -101,7 +101,7 @@ class Api {
     };
 
     //постановка и снятие лайка
-    changeLikeCardStatus(id, isLiked, jwt) {
+    changeLikeCardStatus(id, isLiked) {
         return fetch(`${this._baseUrl}/cards/${id}/likes`, {
             method: `${isLiked ? 'PUT' : 'DELETE'}`,
             headers: {
@@ -114,7 +114,7 @@ class Api {
     };
 
     //обновление аватара пользователя
-    patchAvatar(avatar, jwt) {
+    patchAvatar(avatar) {
         return fetch(`${this._baseUrl}/users/me/avatar`, {
             method: 'PATCH',
             headers: {

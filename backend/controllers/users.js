@@ -158,7 +158,14 @@ module.exports.updateUser = (req, res, next) => {
       if (!user) {
         throw new NotFound('Запрашиваемый пользователь не найден');
       }
-      return res.send({ data: user });
+      /* return res.send({ data: user }); */
+      return res.send({
+        name: user.name,
+        about: user.about,
+        email: user.email,
+        avatar: user.avatar,
+        _id: user._id,
+      });
     })
     .catch((err) => {
       if (err.name === 'ValidationError') {
