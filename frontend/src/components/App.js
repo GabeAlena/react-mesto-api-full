@@ -66,7 +66,6 @@ function App() {
             setInfoTooltipMessage("Что-то пошло не так! Попробуйте ещё раз.");
             console.log(err);
           })
-          .finally(handleInfoTooltip);
     }
 
     const checkToken = () => {
