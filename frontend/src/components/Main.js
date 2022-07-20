@@ -45,7 +45,7 @@ function Main(props) {
             </section>
 
             <section className="elements-container">
-                {props.cards.map((card) => (
+                {props.cards.length > 0 && props.cards.map((card) => (
                     <Card
                         key={card._id} 
                         card={card} 
