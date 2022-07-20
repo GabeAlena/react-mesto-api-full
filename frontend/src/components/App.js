@@ -114,7 +114,7 @@ function App() {
             _id: data._id,
             name: data.name,
             about: data.about,
-            src: data.avatar,
+            avatar: data.avatar,
           }));
         })
         .catch((err) => console.log(err));
