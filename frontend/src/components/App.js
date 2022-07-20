@@ -94,7 +94,7 @@ function App() {
       navigate('/signin');
     }
 
-    useEffect(() => {
+    /* useEffect(() => {
       if (isLoggedIn)
         Promise.all([api.getUserInfo(), api.getInitialCards()])
           .then(([userInfo, cards]) => {
@@ -104,7 +104,38 @@ function App() {
           .catch((err) => {
               console.log(err);
           });
-    }, [isLoggedIn])
+    }, [isLoggedIn]) */
+
+    useEffect(() => {
+      api.getUserInfo(localStorage.getItem('jwt'))
+        .then((data) => {
+          setCurrentUser((old) => ({
+            ...old,
+            _id: data._id,
+            name: data.name,
+            about: data.about,
+            src: data.avatar,
+          }));
+        })
+        .catch((err) => console.log(err));
+    }, []);
+
+    useEffect(() => {
+      api.getInitialCards(localStorage.getItem('jwt'))
+        .then((data) => {
+          setCards(
+            data.reverse().map((item) => ({
+              _id: item._id,
+              src: item.link,
+              name: item.name,
+              likesNum: item.likes.length,
+              likesArr: item.likes,
+              owner: item.owner,
+            }))
+          );
+        })
+        .catch((err) => console.log(err));
+    }, [isLoggedIn]);
     
     useEffect(() => {
         checkToken();
