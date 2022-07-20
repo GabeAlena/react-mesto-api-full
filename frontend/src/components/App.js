@@ -123,16 +123,14 @@ function App() {
     useEffect(() => {
       api.getInitialCards(localStorage.getItem('jwt'))
         .then((data) => {
-          setCards(
-            data.reverse().map((item) => ({
-              _id: item._id,
-              src: item.link,
-              name: item.name,
-              likesNum: item.likes.length,
-              likesArr: item.likes,
-              owner: item.owner,
-            }))
-          );
+          setCards({
+            _id: data._id,
+            src: data.link,
+            name: data.name,
+            likesNum: data.likes.length,
+            likesArr: data.likes,
+            owner: data.owner,
+          });
         })
         .catch((err) => console.log(err));
     }, [isLoggedIn]);
