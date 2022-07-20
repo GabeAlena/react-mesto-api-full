@@ -57,7 +57,6 @@ function App() {
           .then((response) => {
             console.log(response);
             localStorage.setItem('jwt', response.token);
-            checkToken(localStorage.getItem('jwt'));
             setIsLoggedIn(true);
             setUserEmail(email);
             navigate('/');             
