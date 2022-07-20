@@ -54,9 +54,10 @@ function App() {
 
     function handleLogin({email, password}) {
       auth.authorization(email, password)
-          .then((response) => {
-            console.log(response);
-            localStorage.setItem('jwt', response.token);
+          .then((res) => {
+            console.log(res);
+            localStorage.setItem('jwt', res.token);
+            checkToken();
             setIsLoggedIn(true);
             setUserEmail(email);
             navigate('/');             
