@@ -127,7 +127,6 @@ function App() {
             _id: data._id,
             src: data.link,
             name: data.name,
-            likesNum: data.likes.length,
             likesArr: data.likes,
             owner: data.owner,
           });
