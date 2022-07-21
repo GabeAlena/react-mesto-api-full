@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { api } from '../utils/api.js';
-import { Route, Routes, useNavigate } from 'react-router-dom';
+import { Route, Routes, useNavigate, Navigate } from 'react-router-dom';
 import Header from './Header';
 import Main from './Main';
 import Footer from './Footer';
@@ -57,7 +57,7 @@ function App() {
           .then((res) => {
             console.log(res);
             localStorage.setItem('jwt', res.token);
-            localStorage.getItem('jwt');
+            checkToken();
             setIsLoggedIn(true);
             setUserEmail(email);
             navigate('/');             
@@ -212,6 +212,10 @@ function App() {
               <Route path="/signin" element={
                   <Login onLogin={handleLogin} />
               }/>
+
+              <Route>
+                  {isLoggedIn ? <Navigate to="/" /> : <Navigate to="/signup" />}
+              </Route>
 
               <Route path="/" exact element={
                   <ProtectedRoute isLoggedIn={isLoggedIn}>
