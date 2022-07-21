@@ -58,7 +58,7 @@ function App() {
             console.log(res);
             localStorage.setItem('jwt', res.token);
             checkToken(localStorage.getItem('jwt'));
-            setIsLoggedIn(true);
+            /* setIsLoggedIn(true); */
             setUserEmail(email);
             /* navigate('/'); */ 
           })
@@ -213,7 +213,7 @@ function App() {
               }/>
 
               <Route path="/" exact element={
-                  <ProtectedRoute isLoggedIn={isLoggedIn}>
+                  <ProtectedRoute isLoggedIn={isLoggedIn} path="/">
                       <Main
                           onEditAvatar={handleEditAvatarClick} 
                           onEditProfile={handleEditProfileClick} 
