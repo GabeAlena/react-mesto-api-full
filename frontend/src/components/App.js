@@ -57,9 +57,10 @@ function App() {
           .then((res) => {
             console.log(res);
             localStorage.setItem('jwt', res.token);
+            checkToken(localStorage.getItem('jwt'));
             setIsLoggedIn(true);
             setUserEmail(email);
-            navigate('/');             
+            /* navigate('/'); */ 
           })
           .catch((err) => {
             setInfoTooltipImage(failImage);
@@ -73,9 +74,11 @@ function App() {
       if (jwt) {
         auth.checkToken(jwt)
             .then((response) => {
+              if (response) {
                 setUserEmail(response.email);
                 setIsLoggedIn(true);
-                navigate('/');        
+                navigate('/'); 
+              }
             })
             .catch((err) => {
               console.log(err);
