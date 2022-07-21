@@ -21,8 +21,8 @@ class Api {
                 authorization: `Bearer ${localStorage.getItem('jwt')}`,
                 'Content-Type': 'application/json'
             },
-            credentials: 'include'
-        })
+            /* credentials: 'include', */
+    })
         .then(this._checkResponse)
     }
 
@@ -34,7 +34,7 @@ class Api {
                 authorization: `Bearer ${localStorage.getItem('jwt')}`,
                 'Content-Type': 'application/json'
             },
-            credentials: 'include'
+            /* credentials: 'include', */
         })
         .then(this._checkResponse)
     };
@@ -47,7 +47,7 @@ class Api {
                 authorization: `Bearer ${localStorage.getItem('jwt')}`,
                 'Content-Type': 'application/json'
             },
-            credentials: 'include',
+            /* credentials: 'include', */
             body: JSON.stringify({
                 name,
                 about
@@ -64,7 +64,7 @@ class Api {
                 authorization: `Bearer ${localStorage.getItem('jwt')}`,
                 'Content-Type': 'application/json'
             },
-            credentials: 'include',
+            /* credentials: 'include', */
             body: JSON.stringify({
                 name,
                 link
@@ -81,7 +81,7 @@ class Api {
                 authorization: `Bearer ${localStorage.getItem('jwt')}`,
                 'Content-Type': 'application/json'
             },
-            credentials: 'include'
+            /* credentials: 'include', */
         })
         .then(this._checkResponse)
     };
@@ -94,7 +94,7 @@ class Api {
                 authorization: `Bearer ${localStorage.getItem('jwt')}`,
                 'Content-Type': 'application/json'
             },
-            credentials: 'include'
+            /* credentials: 'include', */
         })
         .then(this._checkResponse)
     };
@@ -107,7 +107,7 @@ class Api {
                 authorization: `Bearer ${localStorage.getItem('jwt')}`,
                 'Content-Type': 'application/json'
             },
-            credentials: 'include'
+            /* credentials: 'include', */
         })
         .then(this._checkResponse)
     };
@@ -120,7 +120,7 @@ class Api {
                 authorization: `Bearer ${localStorage.getItem('jwt')}`,
                 'Content-Type': 'application/json'
             },
-            credentials: 'include',
+            /* credentials: 'include', */
             body: JSON.stringify({
                 avatar
             })
