@@ -98,9 +98,7 @@ function App() {
     }
 
     useEffect(() => {
-      if (!isLoggedIn) {
-        return ;
-      }
+      if (isLoggedIn)
         Promise.all([api.getUserInfo(), api.getInitialCards()])
           .then(([userInfo, cards]) => {
             setCurrentUser(userInfo);
