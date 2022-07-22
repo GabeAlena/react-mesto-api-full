@@ -60,7 +60,7 @@ function App() {
             checkToken();
             setIsLoggedIn(true);
             setUserEmail(email);
-            navigate('/');             
+            navigate('/');
           })
           .catch((err) => {
             setInfoTooltipImage(failImage);

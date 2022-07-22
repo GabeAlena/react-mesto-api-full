@@ -2,7 +2,7 @@ require('dotenv').config();
 const express = require('express');
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
-/* const cookieParser = require('cookie-parser'); */
+const helmet = require('helmet');
 const { errors, celebrate, Joi } = require('celebrate');
 const cors = require('cors');
 
@@ -21,7 +21,7 @@ mongoose.connect('mongodb://localhost:27017/mestodb', { useNewUrlParser: true })
 
 app.use(express.json());
 app.use(bodyParser.json());
-/* app.use(cookieParser()); */
+app.use(helmet());
 app.use(bodyParser.urlencoded({ extended: true }));
 
 app.use(cors({
