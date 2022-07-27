@@ -156,7 +156,7 @@ function App() {
     }
 
     function handleDeleteCardClick(card) {
-        setSelectedCard(card);
+        setSelectedCard({isOpen: true});
         setIsDeleteCardPopupOpen(true);
     }
 
@@ -230,7 +230,7 @@ function App() {
                           cards={cards}
                           onCardClick={handleCardClick}
                           onCardLike={handleCardLike}
-                          onCardDelete={handleCardDelete}
+                          onCardDelete={handleDeleteCardClick}
                       />
                       <Footer />
                   </ProtectedRoute>
@@ -264,7 +264,7 @@ function App() {
           <DeleteCardPopup 
               isOpen={isDeleteCardPopupOpen}
               onClose={closeAllPopups}
-              onSubmit={handleDeleteCardClick}
+              onSubmit={handleCardDelete}
           />
 
           <InfoTooltip 
