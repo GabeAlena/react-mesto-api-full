@@ -117,7 +117,7 @@ function App() {
 
     function handleCardClick(card) {
         card.isOpen = true;
-        setSelectedCard({isOpen: true});
+        setSelectedCard(card);
     }
 
     function handleCardLike(card) {
