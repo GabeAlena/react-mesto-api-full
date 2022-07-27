@@ -137,6 +137,7 @@ function App() {
         api.deleteCard(card._id)
           .then(() => {
               setCards((state) => state.filter((c) => c._id !== card._id));
+              closeAllPopups();
           })
           .catch((err) => {
               console.log(err);
@@ -155,7 +156,7 @@ function App() {
         setIsAddPlacePopupOpen(true);
     }
 
-    function handleDeleteCardPopup() {
+    function handleDeleteCardClick() {
         setIsDeleteCardPopupOpen(true);
     }
 
@@ -229,7 +230,7 @@ function App() {
                           cards={cards}
                           onCardClick={handleCardClick}
                           onCardLike={handleCardLike}
-                          onCardDelete={handleDeleteCardPopup}
+                          onCardDelete={handleDeleteCardClick}
                       />
                       <Footer />
                   </ProtectedRoute>
