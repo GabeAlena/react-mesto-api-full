@@ -118,7 +118,6 @@ function App() {
     function handleCardClick(card) {
         card.isOpen = true;
         setSelectedCard(card)
-        setIsDeleteCardPopupOpen(true);
     }
 
     function handleCardLike(card) {
