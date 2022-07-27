@@ -230,7 +230,7 @@ function App() {
                           cards={cards}
                           onCardClick={handleCardClick}
                           onCardLike={handleCardLike}
-                          onCardDelete={handleDeleteCardClick}
+                          onCardDelete={handleCardDelete}
                       />
                       <Footer />
                   </ProtectedRoute>
@@ -264,7 +264,7 @@ function App() {
           <DeleteCardPopup 
               isOpen={isDeleteCardPopupOpen}
               onClose={closeAllPopups}
-              onSubmit={handleCardDelete}
+              onSubmit={handleDeleteCardClick}
           />
 
           <InfoTooltip 
