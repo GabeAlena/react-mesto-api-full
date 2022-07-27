@@ -26,7 +26,6 @@ function App() {
     const [isDeleteCardPopupOpen, setIsDeleteCardPopupOpen] = useState(false);
     const [selectedCard, setSelectedCard] = useState({isOpen : false});
     const [cards, setCards] = useState([]);
-    const [selectedCardForDelete, setSelectedCardForDelete] = useState({isOpen: false});
     const [currentUser, setCurrentUser] = useState({});
     const navigate = useNavigate();
     const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -134,10 +133,10 @@ function App() {
           });
     }
 
-    function handleCardDelete(selectedCardForDelete) {
-        api.deleteCard(selectedCardForDelete._id)
+    function handleCardDelete(card) {
+        api.deleteCard(card._id)
           .then(() => {
-              setCards((state) => state.filter((c) => c._id !== selectedCardForDelete._id));
+              setCards((state) => state.filter((c) => c._id !== card._id));
           })
           .catch((err) => {
               console.log(err);
@@ -156,10 +155,9 @@ function App() {
         setIsAddPlacePopupOpen(true);
     }
 
-    function handleDeleteCardClick(selectedCardForDelete) {
-        setSelectedCardForDelete(selectedCardForDelete);
+    function handleDeleteCardClick(card) {
+        setSelectedCard(card);
         setIsDeleteCardPopupOpen(true);
-        console.log(selectedCardForDelete._id);
     }
 
     function closeAllPopups() {
