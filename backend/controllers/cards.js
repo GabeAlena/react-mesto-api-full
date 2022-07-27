@@ -7,14 +7,7 @@ const Forbidden = require('../errors/Forbidden');
 /* возвращает все карточки */
 module.exports.getCards = (req, res, next) => {
   Card.find({})
-    .then((card) => res.send(card))
-    /* {
-      _id: cards._id,
-      link: cards.link,
-      name: cards.name,
-      owner: cards.owner,
-      likes: cards.likes,
-    } */
+    .then((cards) => res.send({ data: cards }))
     .catch((err) => next(err));
 };
 
@@ -24,7 +17,7 @@ module.exports.createCard = (req, res, next) => {
   const owner = req.user._id;
 
   Card.create({ name, link, owner })
-    .then((card) => res.send(card))
+    .then((card) => res.send({ data: card }))
     .catch((err) => {
       if (err.name === 'ValidationError') {
         return next(new ValidationError(`Данные некорректны ${err.message}`));
