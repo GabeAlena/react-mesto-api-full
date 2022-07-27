@@ -24,7 +24,8 @@ function App() {
     const [isEditProfilePopupOpen, setIsEditProfilePopupOpen] = useState(false);
     const [isAddPlacePopupOpen, setIsAddPlacePopupOpen] = useState(false);
     const [isDeleteCardPopupOpen, setIsDeleteCardPopupOpen] = useState(false);
-    const [selectedCard, setSelectedCard] = useState({isOpen : false});
+    /* const [selectedCard, setSelectedCard] = useState({isOpen : false}); */
+    const [selectedCard, setSelectedCard] = useState({});
     const [cards, setCards] = useState([]);
     const [currentUser, setCurrentUser] = useState({});
     const navigate = useNavigate();
