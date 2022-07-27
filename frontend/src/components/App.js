@@ -117,7 +117,7 @@ function App() {
 
     function handleCardClick(card) {
         card.isOpen = true;
-        setSelectedCard(card)
+        setSelectedCard({isOpen: true});
     }
 
     function handleCardLike(card) {
@@ -156,7 +156,7 @@ function App() {
     }
 
     function handleDeleteCardClick(card) {
-        setSelectedCard({isOpen: true});
+        setSelectedCard(card);
         setIsDeleteCardPopupOpen(true);
     }
 
