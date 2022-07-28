@@ -58,7 +58,6 @@ function App() {
             if (res.token) {
               console.log(res);
               localStorage.setItem('jwt', res.token);
-              /* checkToken(); */
               setIsLoggedIn(true);
               setUserEmail(email);
               navigate('/');
@@ -72,9 +71,9 @@ function App() {
     }
 
     const checkToken = () => {
-      const token = localStorage.getItem('jwt');
-      if (token) {
-        auth.checkToken(token)
+      const jwt = localStorage.getItem('jwt');
+      if (jwt) {
+        auth.checkToken(jwt)
             .then((response) => {
               if (response) {
                 setCurrentUser(response);
@@ -101,7 +100,7 @@ function App() {
 
     useEffect(() => {
       if (isLoggedIn)
-        Promise.all([api.getUserInfo(), api.getInitialCards()])
+        Promise.all([api.getUserInfo(localStorage.getItem('jwt')), api.getInitialCards(localStorage.getItem('jwt'))])
           .then(([userInfo, cards]) => {
             setCurrentUser(userInfo);
             setCards(cards);
@@ -124,7 +123,7 @@ function App() {
        /* const isLiked = card.likes.some(i => i._id === currentUser._id); */
        const isLiked = card.likes.some(i => i === currentUser._id);
         
-        api.changeLikeCardStatus(card._id, !isLiked)
+        api.changeLikeCardStatus(card._id, !isLiked, localStorage.getItem('jwt'))
           .then((newCard) => {
             setCards((state) => state.map((c) => c._id === card._id ? newCard : c));
           })
@@ -134,7 +133,7 @@ function App() {
     }
 
     function handleCardDelete(card) {
-        api.deleteCard(card._id)
+        api.deleteCard(card._id, localStorage.getItem('jwt'))
           .then(() => {
               setCards((state) => state.filter((c) => c._id !== card._id));
           })
@@ -164,7 +163,7 @@ function App() {
     }
 
     function handleUpdateUser({ name, about }) {
-        api.editProfileData(name, about)
+        api.editProfileData(name, about, localStorage.getItem('jwt'))
           .then((newProfileData) => {
             setCurrentUser(newProfileData);
           })
@@ -177,7 +176,7 @@ function App() {
     }
 
     function handleUpdateAvatar({ avatar }) {
-        api.patchAvatar(avatar)
+        api.patchAvatar(avatar, localStorage.getItem('jwt'))
           .then((newAvatar) => {
             setCurrentUser(newAvatar);
           })
@@ -190,7 +189,7 @@ function App() {
     }
 
     function handleAddPlaceSubmit({ name, link }) {
-        api.postNewCard(name, link)
+        api.postNewCard(name, link, localStorage.getItem('jwt'))
           .then((newCard) => {
             setCards([newCard, ...cards]);
           })
