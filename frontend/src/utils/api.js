@@ -14,12 +14,11 @@ class Api {
     }
     
     // загрузка информации о пользователе с сервера
-    getUserInfo(jwt) {
+    getUserInfo() {
         return fetch(`${this._baseUrl}/users/me`, {
             method: 'GET',
             headers: {
-                /* authorization: `Bearer ${localStorage.getItem('jwt')}`, */
-                authorization: `Bearer ${jwt}`,
+                authorization: `Bearer ${localStorage.getItem('jwt')}`,
                 'Content-Type': 'application/json'
             },
             /* credentials: 'include', */
@@ -28,12 +27,11 @@ class Api {
     }
 
     //загрузка карточек с сервера
-    getInitialCards(jwt) {
+    getInitialCards() {
         return fetch(`${this._baseUrl}/cards`, {
             method: 'GET',
             headers: {
-                /* authorization: `Bearer ${localStorage.getItem('jwt')}`, */
-                authorization: `Bearer ${jwt}`,
+                authorization: `Bearer ${localStorage.getItem('jwt')}`,
                 'Content-Type': 'application/json'
             },
             /* credentials: 'include', */
@@ -42,12 +40,11 @@ class Api {
     };
 
     //редактирование профиля
-    editProfileData(name, about, jwt) {
+    editProfileData(name, about) {
         return fetch(`${this._baseUrl}/users/me`, {
             method: 'PATCH',
             headers: {
-                /* authorization: `Bearer ${localStorage.getItem('jwt')}`, */
-                authorization: `Bearer ${jwt}`,
+                authorization: `Bearer ${localStorage.getItem('jwt')}`,
                 'Content-Type': 'application/json'
             },
             /* credentials: 'include', */
@@ -60,12 +57,11 @@ class Api {
     };
 
     //добавление новой карточки
-    postNewCard(name, link, jwt) {
+    postNewCard(name, link) {
         return fetch(`${this._baseUrl}/cards`, {
             method: 'POST',
             headers: {
-                /* authorization: `Bearer ${localStorage.getItem('jwt')}`, */
-                authorization: `Bearer ${jwt}`,
+                authorization: `Bearer ${localStorage.getItem('jwt')}`,
                 'Content-Type': 'application/json'
             },
             /* credentials: 'include', */
@@ -78,12 +74,11 @@ class Api {
     };
 
     //отображение количества лайков карточки
-    getLikes(jwt) {
+    getLikes() {
         return fetch(`${this._baseUrl}/cards`, {
             method: 'GET',
             headers: {
-                /* authorization: `Bearer ${localStorage.getItem('jwt')}`, */
-                authorization: `Bearer ${jwt}`,
+                authorization: `Bearer ${localStorage.getItem('jwt')}`,
                 'Content-Type': 'application/json'
             },
             /* credentials: 'include', */
@@ -92,12 +87,11 @@ class Api {
     };
 
     //удаление карточки
-    deleteCard(id, jwt) {
+    deleteCard(id) {
         return fetch(`${this._baseUrl}/cards/${id}`, {
             method: 'DELETE',
             headers: {
-                /* authorization: `Bearer ${localStorage.getItem('jwt')}`, */
-                authorization: `Bearer ${jwt}`,
+                authorization: `Bearer ${localStorage.getItem('jwt')}`,
                 'Content-Type': 'application/json'
             },
             /* credentials: 'include', */
@@ -106,12 +100,11 @@ class Api {
     };
 
     //постановка и снятие лайка
-    changeLikeCardStatus(id, isLiked, jwt) {
+    changeLikeCardStatus(id, isLiked) {
         return fetch(`${this._baseUrl}/cards/${id}/likes`, {
             method: `${isLiked ? 'PUT' : 'DELETE'}`,
             headers: {
-                /* authorization: `Bearer ${localStorage.getItem('jwt')}`, */
-                authorization: `Bearer ${jwt}`,
+                authorization: `Bearer ${localStorage.getItem('jwt')}`,
                 'Content-Type': 'application/json'
             },
             /* credentials: 'include', */
@@ -120,12 +113,11 @@ class Api {
     };
 
     //обновление аватара пользователя
-    patchAvatar(avatar, jwt) {
+    patchAvatar(avatar) {
         return fetch(`${this._baseUrl}/users/me/avatar`, {
             method: 'PATCH',
             headers: {
-                /* authorization: `Bearer ${localStorage.getItem('jwt')}`, */
-                authorization: `Bearer ${jwt}`,
+                authorization: `Bearer ${localStorage.getItem('jwt')}`,
                 'Content-Type': 'application/json'
             },
             /* credentials: 'include', */

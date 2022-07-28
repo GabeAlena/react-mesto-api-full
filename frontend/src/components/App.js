@@ -78,6 +78,7 @@ function App() {
               if (response) {
                 setCurrentUser(response);
                 setUserEmail(response.data.email);
+                console.log(response.data.email);
                 setIsLoggedIn(true);
                 navigate('/'); 
               }
@@ -211,7 +212,7 @@ function App() {
               }/>
 
               <Route path="/signin" element={
-                  <Login onLogin={handleLogin} checkToken={checkToken} />
+                  <Login onLogin={handleLogin} />
               }/>
 
               <Route path="/" exact element={
