@@ -24,9 +24,7 @@ function App() {
     const [isEditProfilePopupOpen, setIsEditProfilePopupOpen] = useState(false);
     const [isAddPlacePopupOpen, setIsAddPlacePopupOpen] = useState(false);
     const [isDeleteCardPopupOpen, setIsDeleteCardPopupOpen] = useState(false);
-    const [isImagePopupOpen, setIsImagePopupOpen] = useState(false);
-    /* const [selectedCard, setSelectedCard] = useState({isOpen : false}); */
-    const [selectedCard, setSelectedCard] = useState({});
+    const [selectedCard, setSelectedCard] = useState({isOpen : false});
     const [cards, setCards] = useState([]);
     const [currentUser, setCurrentUser] = useState({});
     const navigate = useNavigate();
@@ -118,8 +116,7 @@ function App() {
     }, [])
 
     function handleCardClick(card) {
-        /* card.isOpen = true; */
-        setIsImagePopupOpen(true);
+        card.isOpen = true;
         setSelectedCard(card);
     }
 
@@ -167,8 +164,7 @@ function App() {
         setIsEditAvatarPopupOpen(false);
         setIsEditProfilePopupOpen(false);
         setIsAddPlacePopupOpen(false);
-        /* setSelectedCard({isOpen : false}); */
-        setIsImagePopupOpen(false);
+        setSelectedCard({isOpen : false});
         setInfoTooltip(false);
         setIsDeleteCardPopupOpen(false);
     }
@@ -234,7 +230,7 @@ function App() {
                           cards={cards}
                           onCardClick={handleCardClick}
                           onCardLike={handleCardLike}
-                          onCardDelete={handleDeleteCardClick}
+                          onCardDelete={handleCardDelete}
                       />
                       <Footer />
                   </ProtectedRoute>
@@ -262,14 +258,13 @@ function App() {
 
           <ImagePopup 
               card={selectedCard} 
-              isOpen={isImagePopupOpen}
               onClose={closeAllPopups}
           />
 
           <DeleteCardPopup 
               isOpen={isDeleteCardPopupOpen}
               onClose={closeAllPopups}
-              onSubmit={handleCardDelete}
+              onSubmit={handleDeleteCardClick}
           />
 
           <InfoTooltip 
