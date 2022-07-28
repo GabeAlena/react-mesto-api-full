@@ -74,14 +74,13 @@ function App() {
       const jwt = localStorage.getItem('jwt');
       if (jwt) {
         auth.checkToken(jwt)
-            .then((response) => {
-              if (response) {
-                setCurrentUser(response);
-                setUserEmail(response.data.email);
+            .then((res) => {
+              if (res) {
+                setCurrentUser(res);
+                setUserEmail(res.data.email);
                 setIsLoggedIn(true);
                 navigate('/'); 
               }
-              console.log(response.data.email);
             })
             .catch((err) => {
               console.log(err);
