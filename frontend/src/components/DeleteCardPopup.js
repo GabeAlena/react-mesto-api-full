@@ -1,4 +1,4 @@
-import PopupWithForm from "./PopupWithForm";
+/* import PopupWithForm from "./PopupWithForm";
 
 function DeleteCardPopup(props) {
     const handleSubmit = () => {
@@ -17,4 +17,4 @@ function DeleteCardPopup(props) {
     );
 }
 
-export default DeleteCardPopup;
+export default DeleteCardPopup; */
