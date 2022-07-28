@@ -78,10 +78,10 @@ function App() {
               if (response) {
                 setCurrentUser(response);
                 setUserEmail(response.data.email);
-                console.log(response.data.email);
                 setIsLoggedIn(true);
                 navigate('/'); 
               }
+              console.log(response.data.email);
             })
             .catch((err) => {
               console.log(err);
