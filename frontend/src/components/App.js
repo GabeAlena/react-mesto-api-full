@@ -17,13 +17,13 @@ import { CurrentUserContext } from '../contexts/CurrentUserContext';
 import * as auth from '../utils/auth.js';
 import successImage from '../images/success.svg';
 import failImage from '../images/fail.svg';
-import DeleteCardPopup from './DeleteCardPopup';
+/* import DeleteCardPopup from './DeleteCardPopup'; */
 
 function App() {
     const [isEditAvatarPopupOpen, setIsEditAvatarPopupOpen] = useState(false);
     const [isEditProfilePopupOpen, setIsEditProfilePopupOpen] = useState(false);
     const [isAddPlacePopupOpen, setIsAddPlacePopupOpen] = useState(false);
-    const [isDeleteCardPopupOpen, setIsDeleteCardPopupOpen] = useState(false);
+    /* const [isDeleteCardPopupOpen, setIsDeleteCardPopupOpen] = useState(false); */
     const [selectedCard, setSelectedCard] = useState({isOpen : false});
     const [cards, setCards] = useState([]);
     const [currentUser, setCurrentUser] = useState({});
@@ -155,10 +155,10 @@ function App() {
         setIsAddPlacePopupOpen(true);
     }
 
-    function handleDeleteCardClick(card) {
+    /* function handleDeleteCardClick(card) {
         setSelectedCard(card);
         setIsDeleteCardPopupOpen(true);
-    }
+    } */
 
     function closeAllPopups() {
         setIsEditAvatarPopupOpen(false);
@@ -166,7 +166,7 @@ function App() {
         setIsAddPlacePopupOpen(false);
         setSelectedCard({isOpen : false});
         setInfoTooltip(false);
-        setIsDeleteCardPopupOpen(false);
+        /* setIsDeleteCardPopupOpen(false); */
     }
 
     function handleUpdateUser({ name, about }) {
@@ -261,10 +261,10 @@ function App() {
               onClose={closeAllPopups}
           />
 
-          <DeleteCardPopup 
-              isOpen={isDeleteCardPopupOpen}
+          <PopupWithForm 
+              /* isOpen={isDeleteCardPopupOpen}
               onClose={closeAllPopups}
-              onSubmit={handleDeleteCardClick}
+              onSubmit={handleDeleteCardClick} */
           />
 
           <InfoTooltip 
