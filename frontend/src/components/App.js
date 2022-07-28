@@ -24,7 +24,9 @@ function App() {
     const [isEditProfilePopupOpen, setIsEditProfilePopupOpen] = useState(false);
     const [isAddPlacePopupOpen, setIsAddPlacePopupOpen] = useState(false);
     const [isDeleteCardPopupOpen, setIsDeleteCardPopupOpen] = useState(false);
-    const [selectedCard, setSelectedCard] = useState({isOpen : false});
+    const [isImagePopupOpen, setIsImagePopupOpen] = useState(false);
+    /* const [selectedCard, setSelectedCard] = useState({isOpen : false}); */
+    const [selectedCard, setSelectedCard] = useState({});
     const [cards, setCards] = useState([]);
     const [currentUser, setCurrentUser] = useState({});
     const navigate = useNavigate();
@@ -116,7 +118,8 @@ function App() {
     }, [])
 
     function handleCardClick(card) {
-        card.isOpen = true;
+        /* card.isOpen = true; */
+        setIsImagePopupOpen(true);
         setSelectedCard(card);
     }
 
@@ -164,7 +167,8 @@ function App() {
         setIsEditAvatarPopupOpen(false);
         setIsEditProfilePopupOpen(false);
         setIsAddPlacePopupOpen(false);
-        setSelectedCard({isOpen : false});
+        /* setSelectedCard({isOpen : false}); */
+        setIsImagePopupOpen(false);
         setInfoTooltip(false);
         setIsDeleteCardPopupOpen(false);
     }
@@ -258,6 +262,7 @@ function App() {
 
           <ImagePopup 
               card={selectedCard} 
+              isOpen={isImagePopupOpen}
               onClose={closeAllPopups}
           />
 
