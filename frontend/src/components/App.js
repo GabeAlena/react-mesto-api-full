@@ -71,14 +71,13 @@ function App() {
     }
 
     const checkToken = () => {
-      if (!localStorage.getItem('jwt')) return;
       const jwt = localStorage.getItem('jwt');
       if (jwt) {
         auth.checkToken(jwt)
             .then((response) => {
               if (response) {
                 setCurrentUser(response);
-                setUserEmail(response.email);
+                setUserEmail(response.data.email);
                 setIsLoggedIn(true);
                 navigate('/'); 
               }
@@ -212,7 +211,7 @@ function App() {
               }/>
 
               <Route path="/signin" element={
-                  <Login onLogin={handleLogin} />
+                  <Login onLogin={handleLogin} checkToken={checkToken} />
               }/>
 
               <Route path="/" exact element={
