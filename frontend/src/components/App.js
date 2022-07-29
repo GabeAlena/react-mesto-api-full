@@ -71,9 +71,9 @@ function App() {
     };
 
     const checkToken = () => {
-      const token = localStorage.getItem('jwt');
-      if (token) {
-        auth.checkToken(token)
+      const jwt = localStorage.getItem('jwt');
+      if (jwt) {
+        auth.checkToken(jwt)
             .then((res) => {
               if (res) {
                 setCurrentUser(res);
@@ -83,9 +83,6 @@ function App() {
               }
             })
             .catch((err) => {
-              if (err.status === 401 || err.type === 'undefined') {
-                console.log('токен не передан или передан не в том формате');
-              }
               console.log(err);
             })
       }
