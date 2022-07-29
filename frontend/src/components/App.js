@@ -83,11 +83,8 @@ function App() {
               }
             })
             .catch((err) => {
-              if (err.status === 401) {
+              if (err.status === 401 || err.type === 'undefined') {
                 console.log('токен не передан или передан не в том формате');
-              }
-              if (err.type === 'undefined') {
-                console.log('какая-то undefined');
               }
               console.log(err);
             })
