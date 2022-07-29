@@ -103,7 +103,7 @@ function App() {
 
     useEffect(() => {
         checkToken();
-    }, []);
+    }, [checkToken]);
 
     useEffect(() => {
       if (isLoggedIn) {
@@ -115,9 +115,8 @@ function App() {
       const jwt = localStorage.getItem('jwt');
       if (jwt) {
         setIsLoggedIn(true);
-        checkToken();
       }
-    }, [isLoggedIn, checkToken]);
+    }, [isLoggedIn]);
 
 
     function handleInfoTooltip(){
