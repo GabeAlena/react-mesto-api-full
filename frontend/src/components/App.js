@@ -32,10 +32,10 @@ function App() {
     const [infoTooltipImage, setInfoTooltipImage] = useState('');
     const [infoTooltilMessage, setInfoTooltipMessage] = useState('');
 
-    function handleRegister(email, password) {
+    function handleRegister({ email, password }) {
       auth.register(email, password)
           .then((res) => {
-            setUserEmail(res.email);
+            setUserEmail(res.data.email);
             console.log(email);
             setInfoTooltipImage(successImage);
             setInfoTooltipMessage("Вы успешно зарегистрировались!");
@@ -52,14 +52,14 @@ function App() {
           .finally(handleInfoTooltip);
     };
 
-    function handleLogin(email, password) {
+    function handleLogin({ email, password }) {
       auth.authorization(email, password)
           .then((res) => {
             if (res.token) {
               console.log(res);
               localStorage.setItem('jwt', res.token);
               setIsLoggedIn(true);
-              setUserEmail(res.email);
+              setUserEmail(res.data.email);
               navigate('/');
             }
           })
@@ -77,7 +77,7 @@ function App() {
             .then((res) => {
               if (res) {
                 setCurrentUser(res);
-                setUserEmail(res.email);
+                setUserEmail(res.data.email);
                 setIsLoggedIn(true);
                 navigate('/'); 
               }
@@ -162,7 +162,7 @@ function App() {
         setInfoTooltip(false);
     };
 
-    function handleUpdateUser(name, about) {
+    function handleUpdateUser({ name, about }) {
         api.editProfileData(name, about)
           .then((newProfileData) => {
             setCurrentUser(newProfileData);
@@ -175,7 +175,7 @@ function App() {
           })
     };
 
-    function handleUpdateAvatar(avatar) {
+    function handleUpdateAvatar({ avatar }) {
         api.patchAvatar(avatar)
           .then((newAvatar) => {
             setCurrentUser(newAvatar);
@@ -188,7 +188,7 @@ function App() {
           })
     };
 
-    function handleAddPlaceSubmit(name, link) {
+    function handleAddPlaceSubmit({ name, link }) {
         api.postNewCard(name, link)
           .then((newCard) => {
             setCards([newCard, ...cards]);
@@ -215,8 +215,10 @@ function App() {
               }/>
 
               <Route path="/" exact element={
-                  <ProtectedRoute isLoggedIn={isLoggedIn}>
+                  <ProtectedRoute>
                       <Main
+                          isLoggedIn={isLoggedIn}
+                          path="/"
                           onEditAvatar={handleEditAvatarClick} 
                           onEditProfile={handleEditProfileClick} 
                           onAddPlace={handleAddPlaceClick} 
