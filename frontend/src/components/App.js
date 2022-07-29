@@ -71,7 +71,7 @@ function App() {
           })
     };
 
-    const checkToken = () => {
+    /* const checkToken = () => {
       const jwt = localStorage.getItem('jwt');
       if (jwt) {
         auth.checkToken(jwt)
@@ -87,8 +87,26 @@ function App() {
               console.log(err);
             })
       }
-    };
+    }; */
 
+    useEffect(() => {
+      const jwt = localStorage.getItem('jwt');
+      if (jwt) {
+        auth.checkToken(jwt)
+            .then((res) => {
+              if (res) {
+                setCurrentUser(res);
+                setUserEmail(res.email);
+                setIsLoggedIn(true);
+                navigate('/'); 
+              }
+            })
+            .catch((err) => {
+              console.log(err);
+            })
+      }
+    }, []);
+    
     useEffect(() => {
       if (isLoggedIn)
         Promise.all([api.getUserInfo(), api.getInitialCards()])
@@ -101,9 +119,9 @@ function App() {
           });
     }, [isLoggedIn]);
 
-    useEffect(() => {
+    /* useEffect(() => {
         checkToken();
-    }, [checkToken]);
+    }, []);
 
     useEffect(() => {
       if (isLoggedIn) {
@@ -116,7 +134,7 @@ function App() {
       if (jwt) {
         setIsLoggedIn(true);
       }
-    }, [isLoggedIn]);
+    }, [isLoggedIn]); */
 
 
     function handleInfoTooltip(){
