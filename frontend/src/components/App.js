@@ -106,7 +106,7 @@ function App() {
             })
       }
     }, []);
-    
+
     useEffect(() => {
       if (isLoggedIn)
         Promise.all([api.getUserInfo(), api.getInitialCards()])
@@ -121,7 +121,7 @@ function App() {
 
     /* useEffect(() => {
         checkToken();
-    }, []);
+    }, []); */
 
     useEffect(() => {
       if (isLoggedIn) {
@@ -129,7 +129,7 @@ function App() {
       }
     }, [navigate, isLoggedIn]);
 
-    useEffect(() => {
+    /* useEffect(() => {
       const jwt = localStorage.getItem('jwt');
       if (jwt) {
         setIsLoggedIn(true);
