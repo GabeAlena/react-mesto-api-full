@@ -4,7 +4,7 @@ import { Route, Routes, useNavigate } from 'react-router-dom';
 import Header from './Header';
 import Main from './Main';
 import Footer from './Footer';
-import PopupWithForm from './PopupWithForm';
+/* import PopupWithForm from './PopupWithForm'; */
 import ImagePopup from './ImagePopup';
 import EditProfilePopup from './EditProfilePopup';
 import EditAvatarPopup from './EditAvatarPopup';
@@ -253,12 +253,6 @@ function App() {
           <ImagePopup 
               card={selectedCard} 
               onClose={closeAllPopups}
-          />
-
-          <PopupWithForm 
-              name="delete-card"
-              title="Вы уверены?"
-              textButton="Да"
           />
 
           <InfoTooltip 
