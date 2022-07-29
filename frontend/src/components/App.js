@@ -55,9 +55,9 @@ function App() {
     function handleLogin({email, password}) {
       auth.authorization(email, password)
           .then((res) => {
-            if (res.token) {
+            if (res.jwt) {
               console.log(res);
-              localStorage.setItem('jwt', res.token);
+              localStorage.setItem('jwt', res.jwt);
               setIsLoggedIn(true);
               setUserEmail(res.email);
               navigate('/');
@@ -71,7 +71,7 @@ function App() {
     };
 
     const checkToken = () => {
-      const jwt = localStorage.getItem('token');
+      const jwt = localStorage.getItem('jwt');
       if (jwt) {
         auth.checkToken(jwt)
             .then((res) => {
