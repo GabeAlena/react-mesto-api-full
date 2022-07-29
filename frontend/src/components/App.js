@@ -118,7 +118,7 @@ function App() {
         setIsLoggedIn(true);
         setUserEmail(email);
       }
-    }, [userEmail, isLoggedIn]);
+    }, [isLoggedIn]);
 
 
     function handleInfoTooltip(){
