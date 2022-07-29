@@ -70,6 +70,33 @@ function App() {
           })
     };
 
+    useEffect(() => {
+      if (isLoggedIn) {
+        navigate('/');
+      }
+    }, [navigate, isLoggedIn]);
+
+    useEffect(() => {
+      const jwt = localStorage.getItem('jwt');
+      if (jwt) {
+        setIsLoggedIn(true);
+      }
+    }, [isLoggedIn]);
+    
+    useEffect(() => {
+      if (isLoggedIn)
+        Promise.all([api.getUserInfo(), api.getInitialCards()])
+          .then(([userInfo, cards]) => {
+            setCurrentUser(userInfo);
+            setCards(cards);
+            checkToken();
+          })
+          .catch((err) => {
+              console.log(err);
+          });
+    }, [isLoggedIn]);
+
+
     const checkToken = () => {
       const jwt = localStorage.getItem('jwt');
       if (jwt) {
@@ -87,36 +114,6 @@ function App() {
             })
       }
     };
-
-    useEffect(() => {
-      if (isLoggedIn)
-        Promise.all([api.getUserInfo(), api.getInitialCards()])
-          .then(([userInfo, cards]) => {
-            setCurrentUser(userInfo);
-            setCards(cards);
-          })
-          .catch((err) => {
-              console.log(err);
-          });
-    }, [isLoggedIn]);
-
-    /* useEffect(() => {
-        checkToken();
-    }, []); */
-
-    useEffect(() => {
-      if (isLoggedIn) {
-        navigate('/');
-      }
-    }, [navigate, isLoggedIn]);
-
-    useEffect(() => {
-      const jwt = localStorage.getItem('jwt');
-      if (jwt) {
-        setIsLoggedIn(true);
-      }
-    }, [isLoggedIn]);
-
 
     function handleInfoTooltip(){
       setInfoTooltip(true);
