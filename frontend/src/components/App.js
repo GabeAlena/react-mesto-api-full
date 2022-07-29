@@ -117,7 +117,7 @@ function App() {
         setIsLoggedIn(true);
         checkToken();
       }
-    }, [isLoggedIn]);
+    }, [isLoggedIn, checkToken]);
 
 
     function handleInfoTooltip(){
