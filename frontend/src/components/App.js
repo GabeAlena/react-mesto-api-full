@@ -36,44 +36,17 @@ function App() {
       checkToken();
     }, []);
 
-    function handleRegister({email, password}) {
-      auth.register(email, password)
-          .then((response) => {
-            setUserEmail(response.email);
-            console.log(email);
-            setInfoTooltipImage(successImage);
-            setInfoTooltipMessage("Вы успешно зарегистрировались!");
-            if (response) {
-              navigate('/signin');
-              return response.json;
-            }
+    useEffect(() => {
+      if (isLoggedIn)
+        Promise.all([api.getUserInfo(), api.getInitialCards()])
+          .then(([userInfo, cards]) => {
+            setCurrentUser(userInfo);
+            setCards(cards);
           })
           .catch((err) => {
-            console.log(err);
-            setInfoTooltipImage(failImage);
-            setInfoTooltipMessage("Что-то пошло не так! Попробуйте ещё раз.");
-          })
-          .finally(handleInfoTooltip);
-    };
-
-    function handleLogin({email, password}) {
-      auth.authorization(email, password)
-          .then((res) => {
-            if (res.token) {
-              console.log(res);
-              localStorage.setItem('token', res.token);
-              checkToken(localStorage.getItem('token'));
-              /* setIsLoggedIn(true);
-              setUserEmail(email);
-              navigate('/'); */
-            }
-          })
-          .catch((err) => {
-            setInfoTooltipImage(failImage);
-            setInfoTooltipMessage("Что-то пошло не так! Попробуйте ещё раз.");
-            console.log(err);
-          })
-    };
+              console.log(err);
+          });
+    }, [isLoggedIn]);
 
     const checkToken = () => {
       const token = localStorage.getItem('token');
@@ -93,6 +66,45 @@ function App() {
       }
     };
 
+    function handleRegister(email, password) {
+      auth.register(email, password)
+          .then((response) => {
+            setUserEmail(response.email);
+            console.log(email);
+            setInfoTooltipImage(successImage);
+            setInfoTooltipMessage("Вы успешно зарегистрировались!");
+            if (response) {
+              navigate('/signin');
+              return response.json;
+            }
+          })
+          .catch((err) => {
+            console.log(err);
+            setInfoTooltipImage(failImage);
+            setInfoTooltipMessage("Что-то пошло не так! Попробуйте ещё раз.");
+          })
+          .finally(handleInfoTooltip);
+    };
+
+    function handleLogin(email, password) {
+      auth.authorization(email, password)
+          .then((res) => {
+            if (res.token) {
+              console.log(res);
+              localStorage.setItem('token', res.token);
+              checkToken(localStorage.getItem('token'));
+              /* setIsLoggedIn(true);
+              setUserEmail(email);
+              navigate('/'); */
+            }
+          })
+          .catch((err) => {
+            setInfoTooltipImage(failImage);
+            setInfoTooltipMessage("Что-то пошло не так! Попробуйте ещё раз.");
+            console.log(err);
+          })
+    };
+
     function handleInfoTooltip(){
       setInfoTooltip(true);
     };
@@ -102,18 +114,6 @@ function App() {
       setIsLoggedIn(false);
       navigate('/signin');
     };
-
-    useEffect(() => {
-      if (isLoggedIn)
-        Promise.all([api.getUserInfo(), api.getInitialCards()])
-          .then(([userInfo, cards]) => {
-            setCurrentUser(userInfo);
-            setCards(cards);
-          })
-          .catch((err) => {
-              console.log(err);
-          });
-    }, [isLoggedIn]);
 
     function handleCardClick(card) {
         card.isOpen = true;
