@@ -105,7 +105,7 @@ function App() {
               console.log(err);
             })
       }
-    }, []);
+    }, [navigate]);
 
     useEffect(() => {
       if (isLoggedIn)
