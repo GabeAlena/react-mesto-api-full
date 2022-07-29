@@ -108,6 +108,7 @@ function App() {
     useEffect(() => {
       if (isLoggedIn) {
         navigate('/');
+        checkToken();
       }
     }, [navigate, isLoggedIn]);
 
@@ -115,6 +116,7 @@ function App() {
       const jwt = localStorage.getItem('jwt');
       if (jwt) {
         setIsLoggedIn(true);
+        checkToken();
       }
     }, [isLoggedIn]);
 
