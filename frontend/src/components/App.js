@@ -32,41 +32,7 @@ function App() {
     const [infoTooltipImage, setInfoTooltipImage] = useState('');
     const [infoTooltilMessage, setInfoTooltipMessage] = useState('');
 
-    useEffect(() => {
-      checkToken();
-    }, []);
-
-    useEffect(() => {
-      if (isLoggedIn)
-        Promise.all([api.getUserInfo(), api.getInitialCards()])
-          .then(([userInfo, cards]) => {
-            setCurrentUser(userInfo);
-            setCards(cards);
-          })
-          .catch((err) => {
-              console.log(err);
-          });
-    }, [isLoggedIn]);
-
-    const checkToken = () => {
-      const token = localStorage.getItem('token');
-      if (token) {
-        auth.checkToken(token)
-            .then((res) => {
-              if (res) {
-                setCurrentUser(res);
-                setUserEmail(res.email);
-                setIsLoggedIn(true);
-                navigate('/'); 
-              }
-            })
-            .catch((err) => {
-              console.log(err);
-            })
-      }
-    };
-
-    function handleRegister(email, password) {
+    function handleRegister({email, password}) {
       auth.register(email, password)
           .then((response) => {
             setUserEmail(response.email);
@@ -86,12 +52,12 @@ function App() {
           .finally(handleInfoTooltip);
     };
 
-    function handleLogin(email, password) {
+    function handleLogin({email, password}) {
       auth.authorization(email, password)
           .then((res) => {
             if (res.token) {
               console.log(res);
-              localStorage.setItem('token', res.token);
+              localStorage.setItem('jwt', res.token);
               setIsLoggedIn(true);
               setUserEmail(res.email);
               navigate('/');
@@ -104,15 +70,49 @@ function App() {
           })
     };
 
+    const checkToken = () => {
+      const token = localStorage.getItem('token');
+      if (token) {
+        auth.checkToken(token)
+            .then((res) => {
+              if (res) {
+                setCurrentUser(res);
+                setUserEmail(res.email);
+                setIsLoggedIn(true);
+                navigate('/'); 
+              }
+            })
+            .catch((err) => {
+              console.log(err);
+            })
+      }
+    };
+
     function handleInfoTooltip(){
       setInfoTooltip(true);
     };
 
     const handleSignOut = () => {
-      localStorage.removeItem('token');
+      localStorage.removeItem('jwt');
       setIsLoggedIn(false);
       navigate('/signin');
     };
+
+    useEffect(() => {
+      if (isLoggedIn)
+        Promise.all([api.getUserInfo(), api.getInitialCards()])
+          .then(([userInfo, cards]) => {
+            setCurrentUser(userInfo);
+            setCards(cards);
+          })
+          .catch((err) => {
+              console.log(err);
+          });
+    }, [isLoggedIn]);
+
+    useEffect(() => {
+        checkToken();
+    }, []);
 
     function handleCardClick(card) {
         card.isOpen = true;

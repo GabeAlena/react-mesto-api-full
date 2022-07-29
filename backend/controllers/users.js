@@ -69,22 +69,6 @@ module.exports.login = (req, res, next) => {
       });
     })
 
-  /* const token = jwt.sign({ _id: user._id }, 'some-secret-key', { expiresIn: '7d' }); */
-
-  /* return res.cookie('jwt', token, {
-        maxAge: 3600000 * 24 * 7,
-        httpOnly: true,
-        sameSite: true,
-        secure: true,
-      }).send({ token }); */
-  /* res.send({
-        token,
-        name: user.name,
-        about: user.about,
-        email: user.email,
-        avatar: user.avatar,
-        _id: user.id,
-      }); */
     .catch((err) => {
       if (err.name === 'Error') {
         next(new Unauthorized('Неверные почта или пароль'));
@@ -99,8 +83,6 @@ module.exports.returnUser = (req, res, next) => {
       if (!user) {
         throw new NotFound('Пользователь не найден!');
       }
-      /* return res.send({ data: user }); */
-      // с записью ниже прогружаются данные профиля
       return res.send({
         name: user.name,
         about: user.about,
@@ -138,7 +120,6 @@ module.exports.getUser = (req, res, next) => {
         avatar: user.avatar,
         _id: user.id,
       });
-      /* return res.send({ data: user }); */
     })
     .catch((err) => {
       if (err.name === 'ValidationError') {
@@ -159,7 +140,6 @@ module.exports.updateUser = (req, res, next) => {
       if (!user) {
         throw new NotFound('Запрашиваемый пользователь не найден');
       }
-      /* return res.send({ data: user }); */
       return res.send({
         name: user.name,
         about: user.about,
@@ -187,7 +167,6 @@ module.exports.updateAvatarUser = (req, res, next) => {
       if (!user) {
         throw new NotFound('Запрашиваемый пользователь не найден');
       }
-      /* return res.send({ data: user }); */
       return res.send({
         name: user.name,
         about: user.about,
