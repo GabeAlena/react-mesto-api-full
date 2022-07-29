@@ -100,15 +100,15 @@ function App() {
           });
     }, [isLoggedIn]);
 
-    useEffect(() => {
-        checkToken();
-    }, []);
-
     /* useEffect(() => {
+        checkToken();
+    }, []); */
+
+    useEffect(() => {
       if (isLoggedIn) {
         navigate('/');
       }
-    }, [navigate, isLoggedIn]); */
+    }, [navigate, isLoggedIn]);
 
     useEffect(() => {
       const jwt = localStorage.getItem('jwt');
