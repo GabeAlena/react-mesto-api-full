@@ -113,10 +113,9 @@ function App() {
 
     useEffect(() => {
       const jwt = localStorage.getItem('jwt');
-      const email = userEmail;
-      if (email && jwt) {
+      if (jwt) {
         setIsLoggedIn(true);
-        setUserEmail(email);
+        setUserEmail();
       }
     }, [isLoggedIn]);
 
