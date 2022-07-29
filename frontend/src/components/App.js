@@ -115,7 +115,7 @@ function App() {
       const jwt = localStorage.getItem('jwt');
       if (jwt) {
         setIsLoggedIn(true);
-        setUserEmail();
+        checkToken();
       }
     }, [isLoggedIn]);
 
