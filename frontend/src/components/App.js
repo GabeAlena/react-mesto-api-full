@@ -88,16 +88,6 @@ function App() {
       }
     };
 
-    function handleInfoTooltip(){
-      setInfoTooltip(true);
-    };
-
-    const handleSignOut = () => {
-      localStorage.removeItem('jwt');
-      setIsLoggedIn(false);
-      navigate('/signin');
-    };
-
     useEffect(() => {
       if (isLoggedIn)
         Promise.all([api.getUserInfo(), api.getInitialCards()])
@@ -120,12 +110,23 @@ function App() {
       }
     }, [navigate, isLoggedIn]);
 
-    useEffect(() => {
+    /* useEffect(() => {
       const jwt = localStorage.getItem('jwt');
       if (jwt) {
         setIsLoggedIn(true);
       }
-    }, [isLoggedIn]);
+    }, [isLoggedIn]); */
+
+
+    function handleInfoTooltip(){
+      setInfoTooltip(true);
+    };
+
+    const handleSignOut = () => {
+      localStorage.removeItem('jwt');
+      setIsLoggedIn(false);
+      navigate('/signin');
+    };
 
     function handleCardClick(card) {
         card.isOpen = true;
