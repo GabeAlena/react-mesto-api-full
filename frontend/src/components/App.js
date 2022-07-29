@@ -92,10 +92,9 @@ function App() {
             if (res.token) {
               console.log(res);
               localStorage.setItem('token', res.token);
-              checkToken();
-              /* setIsLoggedIn(true);
-              setUserEmail(email);
-              navigate('/'); */
+              setIsLoggedIn(true);
+              setUserEmail(res.email);
+              navigate('/');
             }
           })
           .catch((err) => {
