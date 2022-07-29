@@ -71,9 +71,9 @@ function App() {
     };
 
     const checkToken = () => {
-      const jwt = localStorage.getItem('jwt');
-      if (jwt) {
-        auth.checkToken(jwt)
+      const token = localStorage.getItem('jwt');
+      if (token) {
+        auth.checkToken(token)
             .then((res) => {
               if (res) {
                 setCurrentUser(res);
