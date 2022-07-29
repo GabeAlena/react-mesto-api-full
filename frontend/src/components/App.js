@@ -129,12 +129,12 @@ function App() {
       }
     }, [navigate, isLoggedIn]);
 
-    /* useEffect(() => {
+    useEffect(() => {
       const jwt = localStorage.getItem('jwt');
       if (jwt) {
         setIsLoggedIn(true);
       }
-    }, [isLoggedIn]); */
+    }, [isLoggedIn]);
 
 
     function handleInfoTooltip(){
