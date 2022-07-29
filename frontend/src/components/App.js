@@ -57,7 +57,7 @@ function App() {
           .then((res) => {
             if (res.token) {
               console.log(res);
-              localStorage.setItem('jwt', res.token);
+              localStorage.setItem('token', res.token);
               setIsLoggedIn(true);
               setUserEmail(email);
               navigate('/');
@@ -93,7 +93,7 @@ function App() {
     }
 
     const handleSignOut = () => {
-      localStorage.removeItem('jwt');
+      localStorage.removeItem('token');
       setIsLoggedIn(false);
       navigate('/signin');
     }
