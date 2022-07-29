@@ -114,6 +114,19 @@ function App() {
         checkToken();
     }, []);
 
+    useEffect(() => {
+      if (isLoggedIn) {
+        navigate('/');
+      }
+    }, [navigate, isLoggedIn]);
+
+    useEffect(() => {
+      const jwt = localStorage.getItem('jwt');
+      if (jwt) {
+        setIsLoggedIn(true);
+      }
+    }, [isLoggedIn]);
+
     function handleCardClick(card) {
         card.isOpen = true;
         setSelectedCard(card);
