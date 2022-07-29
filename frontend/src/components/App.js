@@ -34,14 +34,14 @@ function App() {
 
     function handleRegister({email, password}) {
       auth.register(email, password)
-          .then((response) => {
-            setUserEmail(response.email);
+          .then((res) => {
+            setUserEmail(res.email);
             console.log(email);
             setInfoTooltipImage(successImage);
             setInfoTooltipMessage("Вы успешно зарегистрировались!");
-            if (response) {
+            if (res) {
               navigate('/signin');
-              return response.json;
+              return res.json;
             }
           })
           .catch((err) => {
@@ -55,9 +55,9 @@ function App() {
     function handleLogin({email, password}) {
       auth.authorization(email, password)
           .then((res) => {
-            if (res.jwt) {
+            if (res.token) {
               console.log(res);
-              localStorage.setItem('jwt', res.jwt);
+              localStorage.setItem('jwt', res.token);
               setIsLoggedIn(true);
               setUserEmail(res.email);
               navigate('/');
