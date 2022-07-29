@@ -32,6 +32,10 @@ function App() {
     const [infoTooltipImage, setInfoTooltipImage] = useState('');
     const [infoTooltilMessage, setInfoTooltipMessage] = useState('');
 
+    useEffect(() => {
+      checkToken();
+    }, []);
+
     function handleRegister({email, password}) {
       auth.register(email, password)
           .then((response) => {
@@ -50,7 +54,7 @@ function App() {
             setInfoTooltipMessage("Что-то пошло не так! Попробуйте ещё раз.");
           })
           .finally(handleInfoTooltip);
-    }
+    };
 
     function handleLogin({email, password}) {
       auth.authorization(email, password)
@@ -58,9 +62,10 @@ function App() {
             if (res.token) {
               console.log(res);
               localStorage.setItem('token', res.token);
-              setIsLoggedIn(true);
+              checkToken(localStorage.getItem('token'));
+              /* setIsLoggedIn(true);
               setUserEmail(email);
-              navigate('/');
+              navigate('/'); */
             }
           })
           .catch((err) => {
@@ -68,7 +73,7 @@ function App() {
             setInfoTooltipMessage("Что-то пошло не так! Попробуйте ещё раз.");
             console.log(err);
           })
-    }
+    };
 
     const checkToken = () => {
       const token = localStorage.getItem('token');
@@ -77,7 +82,7 @@ function App() {
             .then((res) => {
               if (res) {
                 setCurrentUser(res);
-                setUserEmail(res.data.email);
+                setUserEmail(res.email);
                 setIsLoggedIn(true);
                 navigate('/'); 
               }
@@ -86,17 +91,17 @@ function App() {
               console.log(err);
             })
       }
-    }
+    };
 
     function handleInfoTooltip(){
       setInfoTooltip(true);
-    }
+    };
 
     const handleSignOut = () => {
       localStorage.removeItem('token');
       setIsLoggedIn(false);
       navigate('/signin');
-    }
+    };
 
     useEffect(() => {
       if (isLoggedIn)
@@ -108,16 +113,12 @@ function App() {
           .catch((err) => {
               console.log(err);
           });
-    }, [isLoggedIn])
-
-    useEffect(() => {
-        checkToken();
-    }, [])
+    }, [isLoggedIn]);
 
     function handleCardClick(card) {
         card.isOpen = true;
         setSelectedCard(card);
-    }
+    };
 
     function handleCardLike(card) {
        /* const isLiked = card.likes.some(i => i._id === currentUser._id); */
@@ -130,7 +131,7 @@ function App() {
           .catch((err) => {
               console.log(err);
           });
-    }
+    };
 
     function handleCardDelete(card) {
         api.deleteCard(card._id)
@@ -140,19 +141,19 @@ function App() {
           .catch((err) => {
               console.log(err);
           });
-    }
+    };
 
     function handleEditAvatarClick() {
         setIsEditAvatarPopupOpen(true);
-    }
+    };
 
     function handleEditProfileClick() {
         setIsEditProfilePopupOpen(true);
-    }
+    };
 
     function handleAddPlaceClick() {
         setIsAddPlacePopupOpen(true);
-    }
+    };
 
     function closeAllPopups() {
         setIsEditAvatarPopupOpen(false);
@@ -160,7 +161,7 @@ function App() {
         setIsAddPlacePopupOpen(false);
         setSelectedCard({isOpen : false});
         setInfoTooltip(false);
-    }
+    };
 
     function handleUpdateUser({ name, about }) {
         api.editProfileData(name, about)
@@ -173,7 +174,7 @@ function App() {
           .finally(() => {
             closeAllPopups();
           })
-    }
+    };
 
     function handleUpdateAvatar({ avatar }) {
         api.patchAvatar(avatar)
@@ -186,7 +187,7 @@ function App() {
           .finally(() => {
             closeAllPopups();
           })
-    }
+    };
 
     function handleAddPlaceSubmit({ name, link }) {
         api.postNewCard(name, link)
@@ -199,7 +200,7 @@ function App() {
           .finally(() => {
             closeAllPopups();
           })
-    }
+    };
 
     return (
       <CurrentUserContext.Provider value={currentUser}>
