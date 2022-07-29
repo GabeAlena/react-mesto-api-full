@@ -113,11 +113,12 @@ function App() {
 
     useEffect(() => {
       const jwt = localStorage.getItem('jwt');
-      if (jwt) {
+      const email = userEmail;
+      if (email && jwt) {
         setIsLoggedIn(true);
-        setUserEmail('email');
+        setUserEmail(email);
       }
-    }, [isLoggedIn]);
+    }, [userEmail, isLoggedIn]);
 
 
     function handleInfoTooltip(){
