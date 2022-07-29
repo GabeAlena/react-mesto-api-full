@@ -215,9 +215,8 @@ function App() {
               }/>
 
               <Route path="/" exact element={
-                  <ProtectedRoute>
+                  <ProtectedRoute isLoggedIn={isLoggedIn}>
                       <Main
-                          isLoggedIn={isLoggedIn}
                           path="/"
                           onEditAvatar={handleEditAvatarClick} 
                           onEditProfile={handleEditProfileClick} 
