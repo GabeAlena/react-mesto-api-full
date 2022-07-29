@@ -104,18 +104,18 @@ function App() {
         checkToken();
     }, []);
 
-    useEffect(() => {
+    /* useEffect(() => {
       if (isLoggedIn) {
         navigate('/');
       }
-    }, [navigate, isLoggedIn]);
+    }, [navigate, isLoggedIn]); */
 
-    /* useEffect(() => {
+    useEffect(() => {
       const jwt = localStorage.getItem('jwt');
       if (jwt) {
         setIsLoggedIn(true);
       }
-    }, [isLoggedIn]); */
+    }, [isLoggedIn]);
 
 
     function handleInfoTooltip(){
