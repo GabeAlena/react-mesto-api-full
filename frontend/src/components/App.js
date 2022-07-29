@@ -86,6 +86,9 @@ function App() {
               if (err.status === 401) {
                 console.log('токен не передан или передан не в том формате');
               }
+              if (err.type === 'undefined') {
+                console.log('какая-то undefined');
+              }
               console.log(err);
             })
       }
