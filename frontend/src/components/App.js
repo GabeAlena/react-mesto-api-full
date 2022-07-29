@@ -71,7 +71,7 @@ function App() {
           })
     };
 
-    /* const checkToken = () => {
+    const checkToken = () => {
       const jwt = localStorage.getItem('jwt');
       if (jwt) {
         auth.checkToken(jwt)
@@ -87,25 +87,7 @@ function App() {
               console.log(err);
             })
       }
-    }; */
-
-    useEffect(() => {
-      const token = localStorage.getItem('jwt');
-      if (token) {
-        auth.checkToken(token)
-            .then((res) => {
-              if (res) {
-                setCurrentUser(res);
-                setUserEmail(res.email);
-                setIsLoggedIn(true);
-                navigate('/'); 
-              }
-            })
-            .catch((err) => {
-              console.log(err);
-            })
-      }
-    }, [navigate]);
+    };
 
     useEffect(() => {
       if (isLoggedIn)
@@ -119,9 +101,9 @@ function App() {
           });
     }, [isLoggedIn]);
 
-    /* useEffect(() => {
+    useEffect(() => {
         checkToken();
-    }, []); */
+    }, []);
 
     useEffect(() => {
       if (isLoggedIn) {
