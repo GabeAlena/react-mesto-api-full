@@ -1,0 +1,21 @@
+.sign__welcome {
+  margin: 53px 0 50px;
+  padding: 0;
+  min-width: 358px;
+  font-family: 'Inter', Arial, sans-serif;
+  font-style: normal;
+  font-weight: 900;
+  font-size: 24px;
+  line-height: 29px;
+  text-align: center;
+  color: white;
+}
+
+@media screen and (max-width: 320px){
+  .sign__welcome {
+    min-width: 260px;
+    font-size: 20px;
+    line-height: 24px;
+    margin: 27px 0 40px;
+  }
+}
