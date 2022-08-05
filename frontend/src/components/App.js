@@ -79,6 +79,8 @@ function App() {
               if (res) {
                 setCurrentUser(res);
                 setUserEmail(res.email);
+                navigate('/');
+                setIsLoggedIn(true);
               }
             })
             .catch((err) => {
@@ -103,7 +105,7 @@ function App() {
         checkToken();
     }, []);
 
-    useEffect(() => {
+    /* useEffect(() => {
       if (isLoggedIn) {
         navigate('/');
       }
@@ -114,7 +116,7 @@ function App() {
       if (token) {
         setIsLoggedIn(true);
       }
-    }, [isLoggedIn]);
+    }, [isLoggedIn]); */
 
 
     function handleInfoTooltip(){
