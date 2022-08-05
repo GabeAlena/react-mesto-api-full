@@ -35,7 +35,7 @@ function App() {
     function handleRegister({ email, password }) {
       auth.register(email, password)
           .then((res) => {
-            /* setUserEmail(res.data.email); */
+            setUserEmail(res.email);
             console.log(email);
             setInfoTooltipImage(successImage);
             setInfoTooltipMessage("Вы успешно зарегистрировались!");
@@ -110,8 +110,8 @@ function App() {
     }, [navigate, isLoggedIn]);
 
     useEffect(() => {
-      const jwt = localStorage.getItem('jwt');
-      if (jwt) {
+      const token = localStorage.getItem('jwt');
+      if (token) {
         setIsLoggedIn(true);
       }
     }, [isLoggedIn]);
