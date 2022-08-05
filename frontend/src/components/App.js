@@ -35,7 +35,7 @@ function App() {
     function handleRegister({ email, password }) {
       auth.register(email, password)
           .then((res) => {
-            setUserEmail(res.data.email);
+            /* setUserEmail(res.data.email); */
             console.log(email);
             setInfoTooltipImage(successImage);
             setInfoTooltipMessage("Вы успешно зарегистрировались!");
@@ -59,7 +59,7 @@ function App() {
               console.log(res);
               localStorage.setItem('jwt', res.token);
               setIsLoggedIn(true);
-              setUserEmail(res.email);
+              setUserEmail(email);
               console.log(email);
               navigate('/');
             }
@@ -126,6 +126,7 @@ function App() {
     const handleSignOut = () => {
       localStorage.removeItem('jwt');
       setIsLoggedIn(false);
+      setUserEmail('');
       navigate('/signin');
     };
 
