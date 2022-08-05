@@ -31,6 +31,11 @@ function App() {
     const [infoTooltip, setInfoTooltip] = useState(false);
     const [infoTooltipImage, setInfoTooltipImage] = useState('');
     const [infoTooltilMessage, setInfoTooltipMessage] = useState('');
+    const isOpen = 
+      isEditAvatarPopupOpen ||
+      isEditProfilePopupOpen ||
+      isAddPlacePopupOpen ||
+      selectedCard;
 
     function handleRegister({ email, password }) {
       auth.register(email, password)
@@ -40,7 +45,7 @@ function App() {
             setInfoTooltipImage(successImage);
             setInfoTooltipMessage("Вы успешно зарегистрировались!");
             if (res) {
-              navigate('/signin');
+              navigate("/signin");
               return res.json;
             }
           })
@@ -81,7 +86,7 @@ function App() {
                 setCurrentUser(res);
                 setUserEmail(res.email);
                 setIsLoggedIn(true);
-                navigate('/');
+                navigate("/");
               }
             })
             .catch((err) => {
