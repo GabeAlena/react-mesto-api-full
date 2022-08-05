@@ -91,10 +91,10 @@ function App() {
             if (res.token) {
               console.log(res);
               localStorage.setItem('jwt', res.token);
-              /* setIsLoggedIn(true);
+              setIsLoggedIn(true);
               setUserEmail(email);
               console.log(email);
-              navigate('/'); */
+              navigate('/');
               checkToken();
             }
           })
