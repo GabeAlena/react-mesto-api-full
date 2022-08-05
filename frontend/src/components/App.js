@@ -93,7 +93,6 @@ function App() {
           .then((res) => {
               console.log(res);
               localStorage.setItem('token', res.token);
-              checkToken(localStorage.getItem('token'));
               setIsLoggedIn(true);
               setUserEmail(email);
               console.log(email);
