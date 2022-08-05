@@ -76,11 +76,9 @@ function App() {
       if (token) {
         auth.checkToken(token)
             .then((res) => {
-              if (res) {
-                setCurrentUser(res);
-                setUserEmail(res.email);
-                setIsLoggedIn(true);
-              }
+              setCurrentUser(res);
+              setUserEmail(res.email);
+              navigate('/');
             })
             .catch((err) => {
               console.log(err);
@@ -89,20 +87,22 @@ function App() {
     };
 
     useEffect(() => {
-      if (isLoggedIn)
-        Promise.all([api.getUserInfo(), api.getInitialCards()])
-          .then(([userInfo, cards]) => {
-            setCurrentUser(userInfo);
-            setCards(cards);
-          })
-          .catch((err) => {
-              console.log(err);
-          });
-    }, [isLoggedIn]);
+      checkToken();
+    }, []);
 
     useEffect(() => {
-        checkToken();
-    }, []);
+      if (isLoggedIn) {
+        const token = localStorage.getItem('jwt');
+        Promise.all([api.getUserInfo(token), api.getInitialCards(token)])
+          .then(([userInfo, cards]) => {
+            setCurrentUser(userInfo);
+            setCards(cards.reverse());
+          })
+          .catch((err) => {
+            console.log(err);
+          })
+        }
+    }, [isLoggedIn]);
 
     useEffect(() => {
       if (isLoggedIn) {
@@ -110,12 +110,12 @@ function App() {
       }
     }, [navigate, isLoggedIn]);
 
-    /* useEffect(() => {
+    useEffect(() => {
       const token = localStorage.getItem('jwt');
       if (token) {
         setIsLoggedIn(true);
       }
-    }, [isLoggedIn]); */
+    }, [isLoggedIn]);
 
 
     function handleInfoTooltip(){
