@@ -79,8 +79,8 @@ function App() {
               if (res) {
                 setCurrentUser(res);
                 setUserEmail(res.email);
-                setIsLoggedIn(true);
-                navigate('/'); 
+                /* setIsLoggedIn(true);
+                navigate('/'); */
               }
             })
             .catch((err) => {
@@ -105,9 +105,8 @@ function App() {
         checkToken();
     }, []);
 
-    useEffect((email) => {
+    useEffect(() => {
       if (isLoggedIn) {
-        setUserEmail(email);
         navigate('/');
       }
     }, [navigate, isLoggedIn]);
