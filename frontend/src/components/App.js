@@ -105,7 +105,7 @@ function App() {
           })
     };
 
-    /* useEffect(() => {
+    useEffect(() => {
       if (isLoggedIn) {
         navigate('/');
       }
@@ -116,8 +116,7 @@ function App() {
       if (token) {
         setIsLoggedIn(true);
       }
-    }, [isLoggedIn]); */
-
+    }, [isLoggedIn]);
 
     function handleInfoTooltip(){
       setInfoTooltip(true);
