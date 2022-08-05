@@ -39,6 +39,7 @@ function App() {
             .then((res) => {
               setCurrentUser(res);
               setUserEmail(res.email);
+              setIsLoggedIn(true);
               navigate('/');
             })
             .catch((err) => {
@@ -53,8 +54,7 @@ function App() {
 
     useEffect(() => {
       if (isLoggedIn) {
-        const token = localStorage.getItem('jwt');
-        Promise.all([api.getUserInfo(token), api.getInitialCards(token)])
+        Promise.all([api.getUserInfo(), api.getInitialCards()])
           .then(([userInfo, cards]) => {
             setCurrentUser(userInfo);
             setCards(cards.reverse());
@@ -68,8 +68,8 @@ function App() {
     function handleRegister({ email, password }) {
       auth.register(email, password)
           .then((res) => {
-            /* setUserEmail(res.email);
-            console.log(email); */
+            setUserEmail(res.email);
+            console.log(email);
             setInfoTooltipImage(successImage);
             setInfoTooltipMessage("Вы успешно зарегистрировались!");
             if (res) {
