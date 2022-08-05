@@ -37,10 +37,12 @@ function App() {
       if (token) {
         auth.checkToken(token)
             .then((res) => {
-              setCurrentUser(res);
-              setUserEmail(res.email);
-              setIsLoggedIn(true);
-              navigate('/');
+              if (res) {
+                setCurrentUser(res);
+                setUserEmail(res.email);
+                setIsLoggedIn(true);
+                navigate('/');
+              }
             })
             .catch((err) => {
               console.log(err);
@@ -53,7 +55,9 @@ function App() {
     }, []);
 
     useEffect(() => {
-      if (isLoggedIn) {
+      if (!isLoggedIn) {
+        return ;
+      }
         Promise.all([api.getUserInfo(), api.getInitialCards()])
           .then(([userInfo, cards]) => {
             setCurrentUser(userInfo);
@@ -61,11 +65,10 @@ function App() {
           })
           .catch((err) => {
             console.log(err);
-          })
-        }
+          });
     }, [isLoggedIn]);
 
-    function handleRegister({ email, password }) {
+    function handleRegister(email, password) {
       auth.register(email, password)
           .then((res) => {
             setUserEmail(res.email);
@@ -88,14 +91,13 @@ function App() {
     function handleLogin({ email, password }) {
       auth.authorization(email, password)
           .then((res) => {
-            if (res.token) {
               console.log(res);
               localStorage.setItem('token', res.token);
+              checkToken(localStorage.getItem('token'));
               setIsLoggedIn(true);
               setUserEmail(email);
               console.log(email);
               navigate('/');
-            }
           })
           .catch((err) => {
             setInfoTooltipImage(failImage);
@@ -104,7 +106,7 @@ function App() {
           })
     };
 
-    useEffect(() => {
+    /* useEffect(() => {
       if (isLoggedIn) {
         navigate('/');
       }
@@ -115,7 +117,7 @@ function App() {
       if (token) {
         setIsLoggedIn(true);
       }
-    }, [isLoggedIn]);
+    }, [isLoggedIn]); */
 
     function handleInfoTooltip(){
       setInfoTooltip(true);
@@ -124,8 +126,8 @@ function App() {
     const handleSignOut = () => {
       localStorage.removeItem('token');
       setIsLoggedIn(false);
-      setUserEmail('');
-      navigate('/signin');
+      /* setUserEmail('');
+      navigate('/signin'); */
     };
 
     function handleCardClick(card) {
