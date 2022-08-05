@@ -33,9 +33,9 @@ function App() {
     const [infoTooltilMessage, setInfoTooltipMessage] = useState('');
 
     const checkToken = () => {
-      const token = localStorage.getItem('jwt');
-      if (token) {
-        auth.checkToken(token)
+      const jwt = localStorage.getItem('jwt');
+      if (jwt) {
+        auth.checkToken(jwt)
             .then((res) => {
               setCurrentUser(res);
               setUserEmail(res.email);
@@ -111,8 +111,8 @@ function App() {
     }, [navigate, isLoggedIn]);
 
     useEffect(() => {
-      const token = localStorage.getItem('jwt');
-      if (token) {
+      const jwt = localStorage.getItem('jwt');
+      if (jwt) {
         setIsLoggedIn(true);
       }
     }, [isLoggedIn]);
