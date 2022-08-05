@@ -105,9 +105,9 @@ function App() {
         checkToken();
     }, []);
 
-    useEffect((res) => {
+    useEffect((email) => {
       if (isLoggedIn) {
-        setUserEmail(res.email);
+        setUserEmail(email);
         navigate('/');
       }
     }, [navigate, isLoggedIn]);
