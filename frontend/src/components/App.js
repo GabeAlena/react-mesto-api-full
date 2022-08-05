@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { api } from '../utils/api.js';
-import { Route, Routes, Navigate, useNavigate } from 'react-router-dom';
+import { Route, Routes, useNavigate } from 'react-router-dom';
 import Header from './Header';
 import Main from './Main';
 import Footer from './Footer';
@@ -22,7 +22,7 @@ function App() {
     const [isEditAvatarPopupOpen, setIsEditAvatarPopupOpen] = useState(false);
     const [isEditProfilePopupOpen, setIsEditProfilePopupOpen] = useState(false);
     const [isAddPlacePopupOpen, setIsAddPlacePopupOpen] = useState(false);
-    const [selectedCard, setSelectedCard] = useState({});
+    const [selectedCard, setSelectedCard] = useState({isOpen : false});
     const [cards, setCards] = useState([]);
     const [currentUser, setCurrentUser] = useState({});
     const navigate = useNavigate();
@@ -31,11 +31,6 @@ function App() {
     const [infoTooltip, setInfoTooltip] = useState(false);
     const [infoTooltipImage, setInfoTooltipImage] = useState('');
     const [infoTooltilMessage, setInfoTooltipMessage] = useState('');
-    const isOpen = 
-      isEditAvatarPopupOpen ||
-      isEditProfilePopupOpen ||
-      isAddPlacePopupOpen ||
-      selectedCard;
 
     function handleRegister({ email, password }) {
       auth.register(email, password)
@@ -45,7 +40,7 @@ function App() {
             setInfoTooltipImage(successImage);
             setInfoTooltipMessage("Вы успешно зарегистрировались!");
             if (res) {
-              navigate("/signin");
+              navigate('/signin');
               return res.json;
             }
           })
@@ -63,11 +58,10 @@ function App() {
             if (res.token) {
               console.log(res);
               localStorage.setItem('jwt', res.token);
-              checkToken(localStorage.getItem('jwt'));
-              /* setIsLoggedIn(true);
+              setIsLoggedIn(true);
               setUserEmail(email);
               console.log(email);
-              navigate('/'); */
+              navigate('/');
             }
           })
           .catch((err) => {
@@ -85,8 +79,6 @@ function App() {
               if (res) {
                 setCurrentUser(res);
                 setUserEmail(res.email);
-                setIsLoggedIn(true);
-                navigate("/");
               }
             })
             .catch((err) => {
@@ -111,7 +103,7 @@ function App() {
         checkToken();
     }, []);
 
-    /* useEffect(() => {
+    useEffect(() => {
       if (isLoggedIn) {
         navigate('/');
       }
@@ -122,7 +114,7 @@ function App() {
       if (jwt) {
         setIsLoggedIn(true);
       }
-    }, [isLoggedIn]); */
+    }, [isLoggedIn]);
 
 
     function handleInfoTooltip(){
@@ -180,7 +172,7 @@ function App() {
         setIsEditAvatarPopupOpen(false);
         setIsEditProfilePopupOpen(false);
         setIsAddPlacePopupOpen(false);
-        setSelectedCard({});
+        setSelectedCard({isOpen : false});
         setInfoTooltip(false);
     };
 
@@ -235,8 +227,6 @@ function App() {
               <Route path="/signin" element={
                   <Login onLogin={handleLogin} />
               }/>
-
-              <Route path="*" element={<Navigate to="/" replace />} />
 
               <Route path="/" exact element={
                   <ProtectedRoute path="/" isLoggedIn={isLoggedIn}>
