@@ -1,4 +1,4 @@
-/* const jwt = require('jsonwebtoken');
+const jwt = require('jsonwebtoken');
 
 const YOUR_JWT = 'ddf4e90a0d4024c0fcaca5e139afb6c6c8e9709860457e37c6124013c8b95b6c';
 const SECRET_KEY_DEV = 'dev-secret'; // вставьте сюда секретный ключ для разработки из кода
@@ -23,4 +23,3 @@ try {
     );
   }
 }
-*/
