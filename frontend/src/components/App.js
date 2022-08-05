@@ -32,45 +32,6 @@ function App() {
     const [infoTooltipImage, setInfoTooltipImage] = useState('');
     const [infoTooltilMessage, setInfoTooltipMessage] = useState('');
 
-    function handleRegister({ email, password }) {
-      auth.register(email, password)
-          .then((res) => {
-            setUserEmail(res.email);
-            console.log(email);
-            setInfoTooltipImage(successImage);
-            setInfoTooltipMessage("Вы успешно зарегистрировались!");
-            if (res) {
-              navigate('/signin');
-              return res.json;
-            }
-          })
-          .catch((err) => {
-            console.log(err);
-            setInfoTooltipImage(failImage);
-            setInfoTooltipMessage("Что-то пошло не так! Попробуйте ещё раз.");
-          })
-          .finally(handleInfoTooltip);
-    };
-
-    function handleLogin({ email, password }) {
-      auth.authorization(email, password)
-          .then((res) => {
-            if (res.token) {
-              console.log(res);
-              localStorage.setItem('jwt', res.token);
-              setIsLoggedIn(true);
-              setUserEmail(email);
-              console.log(email);
-              navigate('/');
-            }
-          })
-          .catch((err) => {
-            setInfoTooltipImage(failImage);
-            setInfoTooltipMessage("Что-то пошло не так! Попробуйте ещё раз.");
-            console.log(err);
-          })
-    };
-
     const checkToken = () => {
       const token = localStorage.getItem('jwt');
       if (token) {
@@ -104,7 +65,47 @@ function App() {
         }
     }, [isLoggedIn]);
 
-    useEffect(() => {
+    function handleRegister({ email, password }) {
+      auth.register(email, password)
+          .then((res) => {
+            /* setUserEmail(res.email);
+            console.log(email); */
+            setInfoTooltipImage(successImage);
+            setInfoTooltipMessage("Вы успешно зарегистрировались!");
+            if (res) {
+              navigate('/signin');
+              return res.json;
+            }
+          })
+          .catch((err) => {
+            console.log(err);
+            setInfoTooltipImage(failImage);
+            setInfoTooltipMessage("Что-то пошло не так! Попробуйте ещё раз.");
+          })
+          .finally(handleInfoTooltip);
+    };
+
+    function handleLogin({ email, password }) {
+      auth.authorization(email, password)
+          .then((res) => {
+            if (res.token) {
+              console.log(res);
+              localStorage.setItem('jwt', res.token);
+              /* setIsLoggedIn(true);
+              setUserEmail(email);
+              console.log(email);
+              navigate('/'); */
+              checkToken();
+            }
+          })
+          .catch((err) => {
+            setInfoTooltipImage(failImage);
+            setInfoTooltipMessage("Что-то пошло не так! Попробуйте ещё раз.");
+            console.log(err);
+          })
+    };
+
+    /* useEffect(() => {
       if (isLoggedIn) {
         navigate('/');
       }
@@ -115,7 +116,7 @@ function App() {
       if (token) {
         setIsLoggedIn(true);
       }
-    }, [isLoggedIn]);
+    }, [isLoggedIn]); */
 
 
     function handleInfoTooltip(){
