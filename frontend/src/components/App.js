@@ -78,9 +78,7 @@ function App() {
             .then((res) => {
               if (res) {
                 setCurrentUser(res);
-                setUserEmail(res.email);
-                /* setIsLoggedIn(true);
-                navigate('/'); */
+                /* setUserEmail(res.email); */
               }
             })
             .catch((err) => {
