@@ -95,7 +95,6 @@ function App() {
               setUserEmail(email);
               console.log(email);
               navigate('/');
-              checkToken();
             }
           })
           .catch((err) => {
