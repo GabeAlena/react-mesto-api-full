@@ -79,7 +79,6 @@ function App() {
               if (res) {
                 setCurrentUser(res);
                 setUserEmail(res.email);
-                navigate('/');
                 setIsLoggedIn(true);
               }
             })
@@ -105,13 +104,13 @@ function App() {
         checkToken();
     }, []);
 
-    /* useEffect(() => {
+    useEffect(() => {
       if (isLoggedIn) {
         navigate('/');
       }
     }, [navigate, isLoggedIn]);
 
-    useEffect(() => {
+    /* useEffect(() => {
       const token = localStorage.getItem('jwt');
       if (token) {
         setIsLoggedIn(true);
