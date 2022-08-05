@@ -78,7 +78,7 @@ function App() {
             .then((res) => {
               if (res) {
                 setCurrentUser(res);
-                /* setUserEmail(res.email); */
+                setUserEmail(res.email);
               }
             })
             .catch((err) => {
