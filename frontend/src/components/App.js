@@ -95,12 +95,14 @@ function App() {
             setIsLoggedIn(true);
             setUserEmail(email);
             console.log(email);
+            setInfoTooltipImage(successImage);
+            setInfoTooltipMessage("Вы успешно авторизовались!");
             navigate('/');
           })
           .catch((err) => {
             setInfoTooltipImage(failImage);
             setInfoTooltipMessage("Что-то пошло не так! Попробуйте ещё раз.");
-            console.log(`${err} что-то пошло не так`);
+            console.log(err);
           })
           .finally(handleInfoTooltip);
     };
