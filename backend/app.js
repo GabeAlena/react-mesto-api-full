@@ -22,7 +22,7 @@ app.use(express.json());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
-app.use(cors({
+/* app.use(cors({
   credentials: true,
   origin: [
     'https://localhost:3000',
@@ -33,7 +33,8 @@ app.use(cors({
     'http://gabealena.students.nomoredomains.xyz',
     'https://api.gabealena.students.nomoredomains.xyz',
     'http://api.gabealena.students.nomoredomains.xyz'],
-}));
+})); */
+app.use(cors());
 
 app.use(requestLogger);
 
