@@ -2,7 +2,6 @@
   "name": "react-mesto-auth",
   "version": "0.1.0",
   "private": true,
-  "deploy": "npm run build && scp -r ./build/* _gabe@84.201.141.192:/home/_gabe/mesto-frontend",
   "homepage": "./",
   "dependencies": {
     "@testing-library/jest-dom": "^5.16.4",
