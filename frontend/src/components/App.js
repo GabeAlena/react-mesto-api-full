@@ -68,7 +68,7 @@ function App() {
           });
     }, [isLoggedIn]);
 
-    function handleRegister(email, password) {
+    function handleRegister({ email, password }) {
       auth.register(email, password)
           .then((res) => {
             setUserEmail(res.email);
@@ -125,8 +125,6 @@ function App() {
     const handleSignOut = () => {
       localStorage.removeItem('token');
       setIsLoggedIn(false);
-      /* setUserEmail('');
-      navigate('/signin'); */
     };
 
     function handleCardClick(card) {
