@@ -55,9 +55,7 @@ function App() {
     }, []);
 
     useEffect(() => {
-      if (!isLoggedIn) {
-        return ;
-      }
+      if (isLoggedIn) {
         Promise.all([api.getUserInfo(), api.getInitialCards()])
           .then(([userInfo, cards]) => {
             setCurrentUser(userInfo);
@@ -65,7 +63,8 @@ function App() {
           })
           .catch((err) => {
             console.log(err);
-          });
+          })
+      }
     }, [isLoggedIn]);
 
     function handleRegister({ email, password }) {
@@ -91,17 +90,17 @@ function App() {
     function handleLogin({ email, password }) {
       auth.authorization(email, password)
           .then((res) => {
-              console.log(res);
-              localStorage.setItem('token', res.token);
-              setIsLoggedIn(true);
-              setUserEmail(email);
-              console.log(email);
-              navigate('/');
+            console.log(res);
+            localStorage.setItem('token', res.token);
+            setIsLoggedIn(true);
+            setUserEmail(email);
+            console.log(email);
+            navigate('/');
           })
           .catch((err) => {
             setInfoTooltipImage(failImage);
             setInfoTooltipMessage("Что-то пошло не так! Попробуйте ещё раз.");
-            console.log(err);
+            console.log(`${err} что-то пошло не так`);
           })
     };
 
