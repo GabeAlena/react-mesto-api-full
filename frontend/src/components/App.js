@@ -102,6 +102,7 @@ function App() {
             setInfoTooltipMessage("Что-то пошло не так! Попробуйте ещё раз.");
             console.log(`${err} что-то пошло не так`);
           })
+          .finally(handleInfoTooltip);
     };
 
     useEffect(() => {
