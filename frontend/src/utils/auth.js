@@ -33,12 +33,12 @@ export const authorization = (email, password) => {
     })
     .then(checkResponse)
 
-    .then((data) => {
+    /* .then((data) => {
         if (data.token) {
             localStorage.setItem('jwt', data.token);
             return data;
         }
-    });
+    }); */
 };
 
 export const checkToken = (token) => {
