@@ -1,4 +1,4 @@
-require('dotenv').config();
+require('dotenv').load();
 
 const { NODE_ENV, JWT_SECRET } = process.env;
 const jwt = require('jsonwebtoken');
