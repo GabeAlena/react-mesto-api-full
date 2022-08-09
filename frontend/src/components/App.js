@@ -33,6 +33,7 @@ function App() {
     const [infoTooltilMessage, setInfoTooltipMessage] = useState('');
 
     console.log(process.env.NODE_ENV);
+    console.log(process.env.JWT_SECRET);
 
     const checkToken = () => {
       const token = localStorage.getItem('token');
