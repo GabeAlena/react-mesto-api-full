@@ -31,7 +31,7 @@ function App() {
     const [infoTooltip, setInfoTooltip] = useState(false);
     const [infoTooltipImage, setInfoTooltipImage] = useState('');
     const [infoTooltilMessage, setInfoTooltipMessage] = useState('');
-
+    
     console.log(process.env);
     console.log(process.env.NODE_ENV);
     console.log(process.env.JWT_SECRET);
