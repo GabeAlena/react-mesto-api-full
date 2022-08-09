@@ -64,6 +64,8 @@ app.post('/signin', celebrate({
 app.use('/users', auth, userRouter);
 app.use('/cards', auth, cardRouter);
 
+console.log(process.env.NODE_ENV);
+
 app.use('*', (req, res, next) => next(new NotFound('Запрашиваемая страница не найдена')));
 
 app.use(errorLogger);
