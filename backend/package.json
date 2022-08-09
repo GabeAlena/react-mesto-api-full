@@ -6,6 +6,7 @@
   "scripts": {
     "start": "node app.js",
     "dev": "nodemon app.js",
+    "prod": "NODE_ENV=production & nodemon app.js",
     "lint": "npx eslint .",
     "test": "jest"
   },
