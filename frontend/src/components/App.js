@@ -36,9 +36,6 @@ function App() {
     console.log(process.env.NODE_ENV);
     console.log(process.env.JWT_SECRET);
 
-    // JWT_SECRET=ddf4e90a0d4024c0fcaca5e139afb6c6c8e9709860457e37c6124013c8b95b6c
-    // JWT_SECRET=4b7f344878c38ad7ad77a6d755f996e237d99cd8898cde7abea88ca1f87fe520
-
     const checkToken = () => {
       const token = localStorage.getItem('token');
       if (token) {
