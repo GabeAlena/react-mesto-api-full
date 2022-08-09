@@ -55,7 +55,7 @@ module.exports.login = (req, res, next) => {
     .then((user) => {
       const token = jwt.sign(
         { _id: user._id },
-        NODE_ENV === 'product' ? JWT_SECRET : 'SECRET_KEY',
+        NODE_ENV === 'production' ? JWT_SECRET : 'SECRET_KEY',
         { expiresIn: '7d' },
       );
 
