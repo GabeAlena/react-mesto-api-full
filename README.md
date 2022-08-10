@@ -5,4 +5,4 @@
 
 Ссылка на бэкенд: http://api.gabealena.students.nomoredomains.xyz.
 
-Публичный IP-сервера: 51.250.99.186.
+Публичный IP-сервера: 158.160.4.170.

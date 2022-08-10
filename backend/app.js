@@ -76,3 +76,4 @@ app.use(serverError);
 app.listen(PORT, () => {
   console.log(`Сервер на порту ${PORT} успешно запущен`);
 });
+console.log(process.env);
