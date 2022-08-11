@@ -1,7 +1,5 @@
 require('dotenv').config();
 
-console.log(process.env);
-
 const express = require('express');
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
@@ -77,3 +75,4 @@ app.listen(PORT, () => {
   console.log(`Сервер на порту ${PORT} успешно запущен`);
 });
 console.log(process.env);
+console.log(auth);
