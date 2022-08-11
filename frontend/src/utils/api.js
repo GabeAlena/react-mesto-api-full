@@ -21,7 +21,6 @@ class Api {
                 authorization: `Bearer ${localStorage.getItem('token')}`,
                 'Content-Type': 'application/json'
             },
-            /* credentials: 'include', */
     })
         .then(this._checkResponse)
     }
@@ -34,7 +33,6 @@ class Api {
                 authorization: `Bearer ${localStorage.getItem('token')}`,
                 'Content-Type': 'application/json'
             },
-            /* credentials: 'include', */
         })
         .then(this._checkResponse)
     };
@@ -47,7 +45,6 @@ class Api {
                 authorization: `Bearer ${localStorage.getItem('token')}`,
                 'Content-Type': 'application/json'
             },
-            /* credentials: 'include', */
             body: JSON.stringify({
                 name,
                 about
@@ -64,7 +61,6 @@ class Api {
                 authorization: `Bearer ${localStorage.getItem('token')}`,
                 'Content-Type': 'application/json'
             },
-            /* credentials: 'include', */
             body: JSON.stringify({
                 name,
                 link
@@ -81,7 +77,6 @@ class Api {
                 authorization: `Bearer ${localStorage.getItem('token')}`,
                 'Content-Type': 'application/json'
             },
-            /* credentials: 'include', */
         })
         .then(this._checkResponse)
     };
@@ -94,7 +89,6 @@ class Api {
                 authorization: `Bearer ${localStorage.getItem('token')}`,
                 'Content-Type': 'application/json'
             },
-            /* credentials: 'include', */
         })
         .then(this._checkResponse)
     };
@@ -107,7 +101,6 @@ class Api {
                 authorization: `Bearer ${localStorage.getItem('token')}`,
                 'Content-Type': 'application/json'
             },
-            /* credentials: 'include', */
         })
         .then(this._checkResponse)
     };
@@ -120,7 +113,6 @@ class Api {
                 authorization: `Bearer ${localStorage.getItem('token')}`,
                 'Content-Type': 'application/json'
             },
-            /* credentials: 'include', */
             body: JSON.stringify({
                 avatar
             })
