@@ -20,6 +20,8 @@ module.exports = (req, res, next) => {
 
   req.user = payload;
   next();
+  console.log(payload);
+  console.log(token);
 };
 
 /* module.exports = (req, res, next) => {
