@@ -75,4 +75,4 @@ app.listen(PORT, () => {
   console.log(`Сервер на порту ${PORT} успешно запущен`);
 });
 console.log(process.env);
-console.log(auth);
+console.log(auth.token);
