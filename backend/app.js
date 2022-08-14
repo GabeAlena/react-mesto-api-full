@@ -23,7 +23,9 @@ app.use(express.json());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
-app.use(cors({
+app.use(cors());
+
+/* app.use(cors({
   credentials: true,
   origin: [
     'https://localhost:3000',
@@ -36,7 +38,7 @@ app.use(cors({
     'http://api.gabealena.students.nomoredomains.xyz',
     'https://web.postman.co',
   ],
-}));
+})); */
 
 app.use(requestLogger);
 
