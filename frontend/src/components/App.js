@@ -32,8 +32,6 @@ function App() {
     const [infoTooltipImage, setInfoTooltipImage] = useState('');
     const [infoTooltilMessage, setInfoTooltipMessage] = useState('');
     
-    console.log(process.env);
-
     const checkToken = () => {
       const token = localStorage.getItem('token');
       if (token) {
