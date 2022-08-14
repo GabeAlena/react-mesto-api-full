@@ -34,7 +34,6 @@ app.use(cors({
     'http://gabealena.students.nomoredomains.xyz',
     'https://api.gabealena.students.nomoredomains.xyz',
     'http://api.gabealena.students.nomoredomains.xyz',
-    'https://web.postman.co',
   ],
 }));
 
