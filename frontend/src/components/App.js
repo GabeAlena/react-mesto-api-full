@@ -39,7 +39,7 @@ function App() {
             .then((res) => {
               if (res) {
                 setCurrentUser(res);
-                setUserEmail({ email: res.email });
+                setUserEmail(res.email);
                 setIsLoggedIn(true);
                 navigate('/');
               }
@@ -106,7 +106,7 @@ function App() {
             localStorage.setItem('token', res.token);
             setInfoTooltipImage(successImage);
             setInfoTooltipMessage("Вы успешно авторизовались!");
-            setUserEmail({ email: email });
+            setUserEmail(email);
             setIsLoggedIn(true);
             navigate('/');
           })
@@ -215,7 +215,7 @@ function App() {
 
     return (
       <CurrentUserContext.Provider value={currentUser}>
-          <Header userEmail={userEmail} isLoggedIn={isLoggedIn} handleSignOut={handleSignOut} />
+          <Header email={userEmail} isLoggedIn={isLoggedIn} handleSignOut={handleSignOut} />
 
           <Routes>
               <Route path="/signup" element={
