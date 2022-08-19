@@ -80,7 +80,7 @@ function App() {
       }
     }, [isLoggedIn]);
 
-    function handleRegister(email, password) {
+    function handleRegister({ email, password }) {
       auth.register(email, password)
           .then((res) => {
             setInfoTooltipImage(successImage);
@@ -99,7 +99,7 @@ function App() {
           .finally(handleInfoTooltip);
     };
 
-    function handleLogin(email, password) {
+    function handleLogin({ email, password }) {
       auth.authorization(email, password)
           .then((res) => {
             console.log(res);
