@@ -92,14 +92,14 @@ function App() {
           .then((res) => {
             console.log(res);
             localStorage.setItem('token', res.token);
-            setIsLoggedIn(true);
-            setUserEmail(email);
-            console.log(email);
             setInfoTooltipImage(successImage);
             setInfoTooltipMessage("Вы успешно авторизовались!");
-            if (isLoggedIn) {
+            setUserEmail(email);
+            setIsLoggedIn(true);
+            if (res) {
               navigate('/');
-            }
+              return res.json;
+            };
             /* navigate('/'); */
           })
           .catch((err) => {
