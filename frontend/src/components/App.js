@@ -55,7 +55,7 @@ function App() {
       checkToken();
     }, []);
 
-    /* useEffect(() => {
+    useEffect(() => {
       if (isLoggedIn) {
         navigate('/');
       }
@@ -66,9 +66,9 @@ function App() {
       if (token) {
         setIsLoggedIn(true);
       }
-    }, [isLoggedIn]); */
+    }, [isLoggedIn]);
 
-    /* useEffect(() => {
+    useEffect(() => {
       if (isLoggedIn) {
         Promise.all([api.getUserInfo(), api.getInitialCards()])
           .then(([userInfo, cards]) => {
@@ -79,20 +79,6 @@ function App() {
             console.log(err);
           })
       }
-    }, [isLoggedIn]); */
-
-    useEffect(() => {
-      if (!isLoggedIn) {
-        return ;
-      }  
-        Promise.all([api.getUserInfo(), api.getInitialCards()])
-          .then(([userInfo, cards]) => {
-            setCurrentUser(userInfo);
-            setCards(cards.reverse());
-          })
-          .catch((err) => {
-            console.log(err);
-          })
     }, [isLoggedIn]);
 
     function handleRegister({ email, password }) {
@@ -117,9 +103,9 @@ function App() {
             localStorage.setItem('token', res.token);
             setInfoTooltipImage(successImage);
             setInfoTooltipMessage("Вы успешно авторизовались!");
-            /* setUserEmail(email);
+            setUserEmail(email);
             setIsLoggedIn(true);
-            navigate('/'); */
+            navigate('/');
             checkToken(localStorage.getItem('token'));
           })
           .catch((err) => {
