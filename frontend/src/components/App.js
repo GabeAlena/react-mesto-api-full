@@ -49,6 +49,17 @@ function App() {
             })
       }
     };
+    useEffect(() => {
+      const token = localStorage.getItem('token');
+      if (token) {
+        auth.checkToken(token)
+          .then((res) => {
+            if (res) {
+              setUserEmail(res.email);
+            }
+          })
+      }
+    }, [isLoggedIn]);
 
     useEffect(() => {
       checkToken();
@@ -86,10 +97,6 @@ function App() {
             setInfoTooltipImage(successImage);
             setInfoTooltipMessage("Вы успешно зарегистрировались!");
             navigate('/signin');
-            /* if (res) {
-              navigate('/signin');
-              return res.json;
-            } */
           })
           .catch((err) => {
             console.log(err);
