@@ -9,7 +9,7 @@ const cors = require('cors');
 const userRouter = require('./routes/users');
 const cardRouter = require('./routes/cards');
 const { createUser, login } = require('./controllers/users');
-/* const auth = require('./middlewares/auth'); */
+const auth = require('./middlewares/auth');
 const NotFound = require('./errors/NotFound');
 const { serverError } = require('./errors/serverError');
 const { requestLogger, errorLogger } = require('./middlewares/logger');
@@ -56,8 +56,8 @@ app.post('/signin', celebrate({
   }).unknown(true),
 }), login);
 
-app.use('/users', userRouter);
-app.use('/cards', cardRouter);
+app.use('/users', auth, userRouter);
+app.use('/cards', auth, cardRouter);
 
 app.use('*', (req, res, next) => next(new NotFound('Запрашиваемая страница не найдена')));
 
