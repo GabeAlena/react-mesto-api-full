@@ -70,8 +70,8 @@ function App() {
     function handleRegister({ email, password }) {
       auth.register(email, password)
           .then((res) => {
-            setUserEmail(res.email);
-            console.log(email);
+            /* setUserEmail(res.email);
+            console.log(email); */
             setInfoTooltipImage(successImage);
             setInfoTooltipMessage("Вы успешно зарегистрировались!");
             if (res) {
@@ -94,7 +94,7 @@ function App() {
             localStorage.setItem('token', res.token);
             setInfoTooltipImage(successImage);
             setInfoTooltipMessage("Вы успешно авторизовались!");
-            /*setUserEmail(email); */
+            setUserEmail(email);
             setIsLoggedIn(true);
             navigate('/');
           })
