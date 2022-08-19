@@ -31,6 +31,7 @@ function App() {
     const [infoTooltip, setInfoTooltip] = useState(false);
     const [infoTooltipImage, setInfoTooltipImage] = useState('');
     const [infoTooltilMessage, setInfoTooltipMessage] = useState('');
+    const isOpen = isEditAvatarPopupOpen || isEditProfilePopupOpen || isAddPlacePopupOpen || selectedCard;
     
     const checkToken = () => {
       const token = localStorage.getItem('token');
@@ -49,23 +50,12 @@ function App() {
             })
       }
     };
-    useEffect(() => {
-      const token = localStorage.getItem('token');
-      if (token) {
-        auth.checkToken(token)
-          .then((res) => {
-            if (res) {
-              setUserEmail(res.email);
-            }
-          })
-      }
-    }, [isLoggedIn]);
 
     useEffect(() => {
       checkToken();
     }, []);
 
-    useEffect(() => {
+    /* useEffect(() => {
       if (isLoggedIn) {
         navigate('/');
       }
@@ -76,9 +66,9 @@ function App() {
       if (token) {
         setIsLoggedIn(true);
       }
-    }, [isLoggedIn]);
+    }, [isLoggedIn]); */
 
-    useEffect(() => {
+    /* useEffect(() => {
       if (isLoggedIn) {
         Promise.all([api.getUserInfo(), api.getInitialCards()])
           .then(([userInfo, cards]) => {
@@ -89,6 +79,20 @@ function App() {
             console.log(err);
           })
       }
+    }, [isLoggedIn]); */
+
+    useEffect(() => {
+      if (!isLoggedIn) {
+        return ;
+      }  
+        Promise.all([api.getUserInfo(), api.getInitialCards()])
+          .then(([userInfo, cards]) => {
+            setCurrentUser(userInfo);
+            setCards(cards.reverse());
+          })
+          .catch((err) => {
+            console.log(err);
+          })
     }, [isLoggedIn]);
 
     function handleRegister({ email, password }) {
@@ -113,9 +117,10 @@ function App() {
             localStorage.setItem('token', res.token);
             setInfoTooltipImage(successImage);
             setInfoTooltipMessage("Вы успешно авторизовались!");
-            setUserEmail(email);
+            /* setUserEmail(email);
             setIsLoggedIn(true);
-            navigate('/');
+            navigate('/'); */
+            checkToken(localStorage.getItem('token'));
           })
           .catch((err) => {
             setInfoTooltipImage(failImage);
@@ -124,6 +129,20 @@ function App() {
           })
           .finally(handleInfoTooltip);
     };
+
+    useEffect(() => {
+      function closeEscape(evt) {
+        if (evt.key === 'Escape') {
+          closeAllPopups();
+        }
+      }
+      if (isOpen) {
+        document.addEventListener('keydown', closeEscape);
+        return () => {
+          document.removeEventListener('keydown', closeEscape);
+        };
+      }
+    }, [isOpen]);
 
     function handleInfoTooltip(){
       setInfoTooltip(true);
