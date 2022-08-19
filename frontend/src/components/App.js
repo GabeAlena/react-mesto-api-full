@@ -95,8 +95,8 @@ function App() {
             setInfoTooltipImage(successImage);
             setInfoTooltipMessage("Вы успешно авторизовались!");
             /*setUserEmail(email);
-            setIsLoggedIn(true);
-            navigate('/'); */
+            setIsLoggedIn(true); */
+            navigate('/');
           })
           .catch((err) => {
             setInfoTooltipImage(failImage);
