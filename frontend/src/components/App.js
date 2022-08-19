@@ -107,9 +107,10 @@ function App() {
           .finally(handleInfoTooltip);
     };
 
-    useEffect(() => {
+    useEffect((email) => {
       if (isLoggedIn) {
         navigate('/');
+        setUserEmail(email);
       }
     }, [navigate, isLoggedIn]);
 
@@ -117,7 +118,6 @@ function App() {
       const token = localStorage.getItem('token');
       if (token) {
         setIsLoggedIn(true);
-        setUserEmail(true);
       }
     }, [isLoggedIn]);
 
