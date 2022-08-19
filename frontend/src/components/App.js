@@ -106,7 +106,7 @@ function App() {
             setUserEmail(email);
             setIsLoggedIn(true);
             navigate('/');
-            checkToken(localStorage.getItem('token'));
+            checkToken();
           })
           .catch((err) => {
             setInfoTooltipImage(failImage);
