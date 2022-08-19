@@ -110,7 +110,7 @@ function App() {
       if (isLoggedIn) {
         navigate('/');
       }
-    }, []);
+    }, [navigate ,isLoggedIn]);
 
     useEffect(() => {
       const token = localStorage.getItem('token');
