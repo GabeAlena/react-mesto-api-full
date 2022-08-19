@@ -107,10 +107,9 @@ function App() {
           .finally(handleInfoTooltip);
     };
 
-    useEffect((email) => {
+    useEffect(() => {
       if (isLoggedIn) {
         navigate('/');
-        setUserEmail(email);
       }
     }, [navigate, isLoggedIn]);
 
@@ -120,6 +119,10 @@ function App() {
         setIsLoggedIn(true);
       }
     }, [isLoggedIn]);
+
+    useEffect((email) => {
+      setUserEmail(email);
+    }, [userEmail]);
 
     function handleInfoTooltip(){
       setInfoTooltip(true);
