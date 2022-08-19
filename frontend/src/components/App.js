@@ -94,13 +94,9 @@ function App() {
             localStorage.setItem('token', res.token);
             setInfoTooltipImage(successImage);
             setInfoTooltipMessage("Вы успешно авторизовались!");
-            setUserEmail(email);
+            /*setUserEmail(email);
             setIsLoggedIn(true);
-            if (res) {
-              navigate('/');
-              return res.json;
-            };
-            /* navigate('/'); */
+            navigate('/'); */
           })
           .catch((err) => {
             setInfoTooltipImage(failImage);
@@ -110,11 +106,11 @@ function App() {
           .finally(handleInfoTooltip);
     };
 
-    /* useEffect(() => {
+    useEffect(() => {
       if (isLoggedIn) {
         navigate('/');
       }
-    }, [navigate, isLoggedIn]); */
+    }, []);
 
     useEffect(() => {
       const token = localStorage.getItem('token');
