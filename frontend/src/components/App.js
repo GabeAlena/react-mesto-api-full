@@ -97,7 +97,10 @@ function App() {
             console.log(email);
             setInfoTooltipImage(successImage);
             setInfoTooltipMessage("Вы успешно авторизовались!");
-            navigate('/');
+            if (isLoggedIn) {
+              navigate('/');
+            }
+            /* navigate('/'); */
           })
           .catch((err) => {
             setInfoTooltipImage(failImage);
