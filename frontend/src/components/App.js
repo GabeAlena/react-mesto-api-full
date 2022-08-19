@@ -56,6 +56,19 @@ function App() {
 
     useEffect(() => {
       if (isLoggedIn) {
+        navigate('/');
+      }
+    }, [isLoggedIn, navigate]);
+
+    useEffect(() => {
+      const token = localStorage.getItem('token');
+      if (token) {
+        setIsLoggedIn(true);
+      }
+    }, [isLoggedIn]);
+
+    useEffect(() => {
+      if (isLoggedIn) {
         Promise.all([api.getUserInfo(), api.getInitialCards()])
           .then(([userInfo, cards]) => {
             setCurrentUser(userInfo);
@@ -67,15 +80,16 @@ function App() {
       }
     }, [isLoggedIn]);
 
-    function handleRegister({ email, password }) {
+    function handleRegister(email, password) {
       auth.register(email, password)
           .then((res) => {
             setInfoTooltipImage(successImage);
             setInfoTooltipMessage("Вы успешно зарегистрировались!");
-            if (res) {
+            navigate('/signin');
+            /* if (res) {
               navigate('/signin');
               return res.json;
-            }
+            } */
           })
           .catch((err) => {
             console.log(err);
@@ -85,7 +99,7 @@ function App() {
           .finally(handleInfoTooltip);
     };
 
-    function handleLogin({ email, password }) {
+    function handleLogin(email, password) {
       auth.authorization(email, password)
           .then((res) => {
             console.log(res);
@@ -103,19 +117,6 @@ function App() {
           })
           .finally(handleInfoTooltip);
     };
-
-    useEffect(() => {
-      if (isLoggedIn) {
-        navigate('/');
-      }
-    }, [navigate ,isLoggedIn]);
-
-    useEffect(() => {
-      const token = localStorage.getItem('token');
-      if (token) {
-        setIsLoggedIn(true);
-      }
-    }, [isLoggedIn]);
 
     function handleInfoTooltip(){
       setInfoTooltip(true);
