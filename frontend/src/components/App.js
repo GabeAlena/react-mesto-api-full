@@ -117,6 +117,7 @@ function App() {
       const token = localStorage.getItem('token');
       if (token) {
         setIsLoggedIn(true);
+        setUserEmail(true);
       }
     }, [isLoggedIn]);
 
