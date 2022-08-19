@@ -122,7 +122,7 @@ function App() {
 
     useEffect((email) => {
       setUserEmail(email);
-    }, [userEmail]);
+    }, []);
 
     function handleInfoTooltip(){
       setInfoTooltip(true);
