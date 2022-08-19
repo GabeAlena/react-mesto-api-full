@@ -94,8 +94,8 @@ function App() {
             localStorage.setItem('token', res.token);
             setInfoTooltipImage(successImage);
             setInfoTooltipMessage("Вы успешно авторизовались!");
-            /*setUserEmail(email);
-            setIsLoggedIn(true); */
+            /*setUserEmail(email); */
+            setIsLoggedIn(true);
             navigate('/');
           })
           .catch((err) => {
